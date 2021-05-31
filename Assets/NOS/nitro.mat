@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: nitro
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Cube:
+        m_Texture: {fileID: 8900000, guid: fdf7e032bbecdbc488586053cf7f25b3, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Detail:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Diffuse:
+        m_Texture: {fileID: 2800000, guid: 3fc50709d440be842b044aaac64242d0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GlossMap:
+        m_Texture: {fileID: 2800000, guid: 3fc50709d440be842b044aaac64242d0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeatTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Reflection:
+        m_Texture: {fileID: 2800000, guid: e63d1159b0b090d48a9c04cf7e149182, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RimLightRamp:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AR: 2.5
+    - _CandyPower: 14.230769
+    - _CandyScale: 3.5384617
+    - _Glossiness: 0
+    - _IndexF: 0.90843856
+    - _IndexR: 1
+    - _Intensity: 0.9230769
+    - _InvFade: 1
+    - _MetalicPower: 2.692308
+    - _MetalicScale: 1.076923
+    - _Parallax: 0.02
+    - _Power: 8
+    - _R: 3
+    - _RRO: 0.2
+    - _RRS: 10
+    - _RimPower: 1.4384617
+    - _Shininess: 0.68177366
+    - _Specular: 0.63518935
+    m_Colors:
+    - _AmbientColor: {r: 0.059701502, g: 0.059701502, b: 0.059701502, a: 1}
+    - _AmbientColor2: {r: 0, g: 0, b: 0, a: 1}
+    - _Candy: {r: 0.2761194, g: 0.090579614, b: 0.047393624, a: 0.5019608}
+    - _Color: {r: 0.23134327, g: 0, b: 0, a: 0}
+    - _ColorTint: {r: 1, g: 0, b: 0, a: 1}
+    - _DiffuseColor: {r: 0.29104477, g: 0.29104477, b: 0.29104477, a: 1}
+    - _Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _Refl: {r: 0.92537314, g: 0.4764981, b: 0.4764981, a: 0.5019608}
+    - _ReflectColor: {r: 1, g: 1, b: 1, a: 0.5}
+    - _RimColor: {r: 0, g: 0, b: 0, a: 0}
+    - _RimLightColor: {r: 1, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0.5298507, g: 0.5298507, b: 0.5298507, a: 1}
+    - _SpecularColor: {r: 0, g: 0, b: 0, a: 1}
+    - _TintColor: {r: 0, g: 0.18661262, b: 0.2352941, a: 1}

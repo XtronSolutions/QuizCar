@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: d742cc030c97e3f4aa14324ec07a9a4a
+TrueTypeFontImporter:
+  serializedVersion: 3
+  fontSize: 12
+  forceTextureCase: 0
+  characterSpacing: 1
+  characterPadding: 0
+  includeFontData: 1
+  fontNames:
+  - Cynthe Regular
+  - Arial
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

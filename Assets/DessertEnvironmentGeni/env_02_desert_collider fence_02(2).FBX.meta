@@ -1,0 +1,250 @@
+fileFormatVersion: 2
+guid: 826736887489f0b4d8c42a03c790450b
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: fence
+    100004: fence 1
+    100006: fence001
+    100008: fence002
+    100010: fence003
+    100012: fence004
+    100014: fence005
+    100016: fence006
+    100018: fence007
+    100020: fence008
+    100022: fence009
+    100024: fence010
+    100026: fence011
+    100028: fence012
+    100030: fence013
+    100032: fence014
+    100034: fence015
+    100036: fence016
+    100038: fence017
+    100040: fence_01
+    100042: fence_02
+    400000: //RootNode
+    400002: fence
+    400004: fence 1
+    400006: fence001
+    400008: fence002
+    400010: fence003
+    400012: fence004
+    400014: fence005
+    400016: fence006
+    400018: fence007
+    400020: fence008
+    400022: fence009
+    400024: fence010
+    400026: fence011
+    400028: fence012
+    400030: fence013
+    400032: fence014
+    400034: fence015
+    400036: fence016
+    400038: fence017
+    400040: fence_01
+    400042: fence_02
+    2300000: fence
+    2300002: fence 1
+    2300004: fence001
+    2300006: fence002
+    2300008: fence003
+    2300010: fence004
+    2300012: fence005
+    2300014: fence006
+    2300016: fence007
+    2300018: fence008
+    2300020: fence009
+    2300022: fence010
+    2300024: fence011
+    2300026: fence012
+    2300028: fence013
+    2300030: fence014
+    2300032: fence015
+    2300034: fence016
+    2300036: fence017
+    2300038: fence_01
+    2300040: fence_02
+    3300000: fence
+    3300002: fence 1
+    3300004: fence001
+    3300006: fence002
+    3300008: fence003
+    3300010: fence004
+    3300012: fence005
+    3300014: fence006
+    3300016: fence007
+    3300018: fence008
+    3300020: fence009
+    3300022: fence010
+    3300024: fence011
+    3300026: fence012
+    3300028: fence013
+    3300030: fence014
+    3300032: fence015
+    3300034: fence016
+    3300036: fence017
+    3300038: fence_01
+    3300040: fence_02
+    4300000: fence
+    4300002: fence001
+    4300004: fence
+    4300006: fence_02
+    4300008: fence002
+    4300010: fence_01
+    4300012: fence006
+    4300014: fence004
+    4300016: fence003
+    4300018: fence005
+    4300020: fence008
+    4300022: fence007
+    4300024: fence011
+    4300026: fence010
+    4300028: fence009
+    4300030: fence012
+    4300032: fence015
+    4300034: fence013
+    4300036: fence014
+    4300038: fence017
+    4300040: fence016
+    6400000: fence
+    6400002: fence 1
+    6400004: fence001
+    6400006: fence002
+    6400008: fence003
+    6400010: fence004
+    6400012: fence005
+    6400014: fence006
+    6400016: fence007
+    6400018: fence008
+    6400020: fence009
+    6400022: fence010
+    6400024: fence011
+    6400026: fence012
+    6400028: fence013
+    6400030: fence014
+    6400032: fence015
+    6400034: fence016
+    6400036: fence017
+    6400038: fence_01
+    6400040: fence_02
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: road_asphalt
+    second: {fileID: 2100000, guid: 788b9a4bffcaba346903d71710ac4603, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: road_asphalt_to_sand
+    second: {fileID: 2100000, guid: 86ebd47e05816844da7c3f2986ef21eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: road_seafront
+    second: {fileID: 2100000, guid: c8ee9b7399c35584d9dca99959fd2320, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sand_02
+    second: {fileID: 2100000, guid: 65866f222cc2a0348b1c92abe7faa2ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sand_to_road_sand
+    second: {fileID: 2100000, guid: b1898c9db4f24a843a212ddd65d90175, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sand_to_road_sand_01
+    second: {fileID: 2100000, guid: 195fbd66dc11e07469bec6b3a6cfe344, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: seafront_to_sand_02
+    second: {fileID: 2100000, guid: f23cfc5c0b5fea448afdba5fae1a6369, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

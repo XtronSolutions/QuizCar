@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "242521200867",
+    "project_id": "educationalgame-ff43f",
+    "storage_bucket": "educationalgame-ff43f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242521200867:android:a4a132d112ba4b1b3b4dd6",
+        "android_client_info": {
+          "package_name": "com.game.edugame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "242521200867-tdonq3vc2hao3dtrq7kgi6b63qa0o27j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAcfTizj135bLxhBjC6O7Qq12eXkjB4XA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "242521200867-tdonq3vc2hao3dtrq7kgi6b63qa0o27j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

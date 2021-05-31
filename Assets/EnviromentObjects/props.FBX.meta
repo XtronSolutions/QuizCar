@@ -1,0 +1,230 @@
+fileFormatVersion: 2
+guid: 02ca5c6a975eaed42bdf8c35904818f9
+timeCreated: 1472906027
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: banner_props
+    100002: bridge
+    100004: building
+    100006: 'building '
+    100008: building 1
+    100010: building 2
+    100012: Cabin_d
+    100014: cave
+    100016: cave_stone
+    100018: Deck_Chair_Green010
+    100020: Deck_Chair_Green011
+    100022: Object001
+    100024: Object002
+    100026: Octopus002
+    100028: polySurface1886
+    100030: Pot_a
+    100032: //RootNode
+    100034: props
+    100036: props 1
+    100038: props 2
+    100040: props 3
+    100042: Sea_Turtle001
+    100044: Sheets004
+    100046: Ship_005
+    100048: Starfish_Red001
+    100050: stones
+    100052: stones 1
+    100054: stones 2
+    100056: Tree_a
+    100058: wood
+    100060: wood001
+    100062: Object003
+    400000: banner_props
+    400002: bridge
+    400004: building
+    400006: 'building '
+    400008: building 1
+    400010: building 2
+    400012: Cabin_d
+    400014: cave
+    400016: cave_stone
+    400018: Deck_Chair_Green010
+    400020: Deck_Chair_Green011
+    400022: Object001
+    400024: Object002
+    400026: Octopus002
+    400028: polySurface1886
+    400030: Pot_a
+    400032: props
+    400034: //RootNode
+    400036: props 1
+    400038: props 2
+    400040: props 3
+    400042: Sea_Turtle001
+    400044: Sheets004
+    400046: Ship_005
+    400048: Starfish_Red001
+    400050: stones
+    400052: stones 1
+    400054: stones 2
+    400056: Tree_a
+    400058: wood
+    400060: wood001
+    400062: Object003
+    2300000: banner_props
+    2300002: bridge
+    2300004: building
+    2300006: 'building '
+    2300008: building 1
+    2300010: building 2
+    2300012: Cabin_d
+    2300014: cave
+    2300016: cave_stone
+    2300018: Deck_Chair_Green010
+    2300020: Deck_Chair_Green011
+    2300022: Object001
+    2300024: Object002
+    2300026: Octopus002
+    2300028: polySurface1886
+    2300030: Pot_a
+    2300032: props
+    2300034: props 1
+    2300036: props 2
+    2300038: props 3
+    2300040: Sea_Turtle001
+    2300042: Sheets004
+    2300044: Ship_005
+    2300046: Starfish_Red001
+    2300048: stones
+    2300050: stones 1
+    2300052: stones 2
+    2300054: Tree_a
+    2300056: wood
+    2300058: wood001
+    2300060: Object003
+    3300000: banner_props
+    3300002: bridge
+    3300004: building
+    3300006: 'building '
+    3300008: building 1
+    3300010: building 2
+    3300012: Cabin_d
+    3300014: cave
+    3300016: cave_stone
+    3300018: Deck_Chair_Green010
+    3300020: Deck_Chair_Green011
+    3300022: Object001
+    3300024: Object002
+    3300026: Octopus002
+    3300028: polySurface1886
+    3300030: Pot_a
+    3300032: props
+    3300034: props 1
+    3300036: props 2
+    3300038: props 3
+    3300040: Sea_Turtle001
+    3300042: Sheets004
+    3300044: Ship_005
+    3300046: Starfish_Red001
+    3300048: stones
+    3300050: stones 1
+    3300052: stones 2
+    3300054: Tree_a
+    3300056: wood
+    3300058: wood001
+    3300060: Object003
+    4300000: cave_stone
+    4300002: wood
+    4300004: bridge
+    4300006: props
+    4300008: props
+    4300010: cave
+    4300012: props
+    4300014: props
+    4300016: building
+    4300018: building
+    4300020: building
+    4300022: 'building '
+    4300024: Ship_005
+    4300026: wood001
+    4300028: Cabin_d
+    4300030: Pot_a
+    4300032: Tree_a
+    4300034: polySurface1886
+    4300036: Deck_Chair_Green011
+    4300038: Deck_Chair_Green010
+    4300040: Sheets004
+    4300042: Octopus002
+    4300044: Starfish_Red001
+    4300046: Sea_Turtle001
+    4300048: banner_props
+    4300050: stones
+    4300052: stones
+    4300054: stones
+    4300056: Object001
+    4300058: Object002
+    4300060: Object003
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

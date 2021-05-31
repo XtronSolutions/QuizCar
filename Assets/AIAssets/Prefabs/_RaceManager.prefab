@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &165766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 455494}
+  - component: {fileID: 11479644}
+  - component: {fileID: 11417806}
+  - component: {fileID: 11467910}
+  - component: {fileID: 11425446}
+  m_Layer: 0
+  m_Name: _RaceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &455494
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165766}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11417806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e203bb706e7004892364354da99a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerWrongway: 0
+  racer: {fileID: 0}
+  Waypoints: {fileID: 0}
+  SpawnPoints: {fileID: 0}
+  CheckPoints: {fileID: 0}
+  StartPoint: {fileID: 0}
+  FinishPoint: {fileID: 0}
+  RaceType: 0
+  RaceLaps: 1
+  RacePlayers: 4
+  RaceLength: 0
+  HumanRacerPrefab: {fileID: 100002, guid: d7d0fc66425d49e41a3efb68558416f5, type: 2}
+  PlayerSpawnPosition: 1
+  AIRacerPrefab:
+  - {fileID: 100006, guid: ff986c1c6cc034d4f87b3be32ec653f9, type: 2}
+  - {fileID: 0}
+  AiSpawnOrder: 1
+  AiSpawnMode: 1
+  AiNamingMode: 2
+  RandomAiNames: 0
+  AiContinuesAfterFinish: 1
+  PlayerContinuesAfterFinish: 0
+  StopRaceOnPlayerFinish: 1
+  KickLastRacerAfter2ndLast: 0
+  MoveKickedRacerToIgnoreLayer: 1
+  MoveRespawnToIgnoreLayer: 1
+  IsRaceReady: 0
+  RaceStartsOnStartup: 1
+  TimeTotal: 0
+  TimeCurrent: 0
+  CurrentTimeFixForPlayer: 0
+  TimePlayerLast: 0
+  TimePlayerBest: 0
+  TimeNextCheckPoint: 0
+  TimeTotalCheckPoint: 0
+  TimerCountdownFrom: 5
+  IsRaceStarted: 0
+  IsRaceFinished: 0
+  EnableStartupCamera: 0
+  CurrentCount: 0
+  GameAudioComponent: {fileID: 0}
+  StartMusicAfterCountdown: 1
+  DistancePointDensity: 5
+  DistanceTransformContainer: {fileID: 0}
+  ShowDistanceGizmos: 0
+  LastRacerID: 
+  LastRacerName: 
+  SpeedTrapMode: 1
+  EnableCheckpointArrow: 1
+  WorkingFPS: 0
+--- !u!114 &11425446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb1b82d09c15f348b6452fdcd26faf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackName: RGK Demo - Sprint
+  StartRedTexture: {fileID: 2800000, guid: 8a42d20ee8cc65c4fbe685d86a878fd9, type: 3}
+  StartGreenTexture: {fileID: 2800000, guid: bf53c71aef662d643a87c372e8839734, type: 3}
+  StartYellowTexture: {fileID: 2800000, guid: 70faea379e099554da0b727b87382dea, type: 3}
+  StartBlankTexture: {fileID: 2800000, guid: fddea05d00a8b7f4aa51bb1fe2a62347, type: 3}
+  WrongWayTexture: {fileID: 2800000, guid: 358d5b4d591476044974ee2ab87fda05, type: 3}
+  UI_Rival: {fileID: 2800000, guid: f221a4eae9a2e3146b63866eb7136614, type: 3}
+  UI_Lap: {fileID: 2800000, guid: f47086203fa89174ea3c398e5b3deb24, type: 3}
+  UI_Speed: {fileID: 2800000, guid: 927b7d72df1a8a04e942211cb21b4f73, type: 3}
+  UI_Time: {fileID: 2800000, guid: 12a9b720bbec63d44a4fd0cd30ae2844, type: 3}
+  _1stPlaceImage: {fileID: 2800000, guid: eb37d608653499745b3d10b5b92faabb, type: 3}
+  _2ndPlaceImage: {fileID: 2800000, guid: e1d504b41ed6a284bb347d009f78a34e, type: 3}
+  _3rdPlaceImage: {fileID: 2800000, guid: a339b9e793ee31548a856799b93cfbdc, type: 3}
+  _1pxSeperator: {fileID: 2800000, guid: 9ec040cdaf26e0640863cfe67655662b, type: 3}
+  CountdownWindowStyle: 2
+  _showRightWindow: 1
+  _showLeftWindow: 1
+  _ShowCharacterCountdown: 0
+  _ShowImageCountdown: 0
+  ImageCountdownDelay: 1
+  _ShowResultPlacement: 0
+  _showResultsGrid: 0
+  _showSpeedResultsGrid: 0
+  _ShowCheckPointTimer: 0
+  _ShowWrongWay: 0
+  _ShowGoWindow: 0
+  GoHideWindowDelay: 1
+  UISkin: {fileID: 11400000, guid: 1fedc1e11685249458a98e2881e6dab6, type: 2}
+  PlayerSpeed: 0
+--- !u!114 &11467910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d299ac67aeef2e64aad83bc13a18ce60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameCamera: {fileID: 0}
+  RaceCountDown: {fileID: 0}
+  RaceCheckpoint: {fileID: 0}
+  RaceStart: {fileID: 0}
+  RaceWon: {fileID: 0}
+  RaceLost: {fileID: 0}
+  BackgroundMusic: []
+  RandomBackground: 1
+  LoopBackground: 1
+  BackgroundMusicVolume: 0.7
+  EffectsSoundVolume: 0.7
+  MuteAllSounds: 0
+--- !u!114 &11479644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa9d05b97848bfc4f8a541c49a8ffc4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 165766}
+  m_IsPrefabParent: 1

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id" xmlns:tools="http://schemas.android.com/tools">
+  <string name="gcm_defaultSenderId" translatable="false">242521200867</string>
+  <string name="google_storage_bucket" translatable="false">educationalgame-ff43f.appspot.com</string>
+  <string name="project_id" translatable="false">educationalgame-ff43f</string>
+  <string name="google_api_key" translatable="false">AIzaSyDAcfTizj135bLxhBjC6O7Qq12eXkjB4XA</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDAcfTizj135bLxhBjC6O7Qq12eXkjB4XA</string>
+  <string name="google_app_id" translatable="false">1:242521200867:android:a4a132d112ba4b1b3b4dd6</string>
+  <string name="default_web_client_id" translatable="false">242521200867-tdonq3vc2hao3dtrq7kgi6b63qa0o27j.apps.googleusercontent.com</string>
+</resources>

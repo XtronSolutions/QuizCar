@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74b1e1f96a99fcb43b0795b8bfe6c4b6, type: 3}
+  m_Name: PlayableVehicles
+  m_EditorClassIdentifier: 
+  startingCurrency: 0
+  paintPrice: 0
+  brakeColorPrice: 0
+  rimColorPrice: 0
+  glassColorPrice: 0
+  glowPrice: 0
+  upgradeSpeedPrice: 0
+  upgradeAccelerationPrice: 0
+  upgradeBrakesPrice: 0
+  upgradeTiresPrice: 0
+  upgradeSteeringPrice: 0
+  currentVehicleNumber: 0
+  numberOfCars: 7
+  playerName: Adnan
+  vehicles:
+  - {fileID: 192116, guid: e5bceb05979928e4eb0ce97906532c04, type: 2}
+  - {fileID: 120342, guid: ddbc0c962a93b0a40b3853d6b5cca34f, type: 2}
+  - {fileID: 186678, guid: b38757f08ab46a84ba4f8e7988ee0dfd, type: 2}
+  - {fileID: 137098, guid: a60fd8ac1bdef1f4188c9f98e35bb0df, type: 2}
+  - {fileID: 113394, guid: 378acc6f97e79d542923148a41c91a12, type: 2}
+  - {fileID: 114154, guid: 5347dd703c490f24fb49e415e70fba0d, type: 2}
+  - {fileID: 196634, guid: 15d66d77952b0d643b421a3314ad67f2, type: 2}
+  vehicleNames:
+  - BeachBuggy_1
+  - BeachBuggy_2
+  - BeachBuggy_3
+  - BeachBuggy_4
+  - BeachBuggy_5
+  - BeachBuggy_6
+  - BeachBuggy_7
+  price: 00000000000000000000000000000000000000000000000000000000
+  carUnlocked: 01010101010101
+  topSpeedLevel: 00000000000000000000000000000000000000000000000000000000
+  torqueLevel: 00000000000000000000000000000000000000000000000000000000
+  brakeTorqueLevel: 00000000000000000000000000000000000000000000000000000000
+  tireTractionLevel: 00000000000000000000000000000000000000000000000000000000
+  steerSensitivityLevel: 00000000000000000000000000000000000000000000000000000000

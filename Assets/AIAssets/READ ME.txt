@@ -1,0 +1,17 @@
+Hi, Thanks for interest and purchase of RGK! 
+
+You can build this demo for your mobile device. However current controller set for keyboard.
+For enable mobile controller please do this steps ;
+
+1- Navigate to "Racing Game Kit/Prefabs" folder in project panel and click to "RGKCar-Human" prefab
+2- when you click please check the inspector panel. You'll see some components already assigned. Please find the RGKCar_C2_Human component and uncheck that. Then find the RGKCar_C2_Mobile_Race component and check that. 
+
+And now you've mobile controls.
+
+This component default set to accelerator steering. If you're going to test it on iOS please also check 'Use xaxis" checkbox under RGKCar_C2_Mobile_race component. This is not necessery for android.
+
+Also if you want to use buttons for steering please uncheck "use Acc Steer" property and enable the steering buttons under of "_RGKTouchDriveManager" hierarchy
+
+Please dont hesitate to contact me if you have questions.
+
+Have Fun!

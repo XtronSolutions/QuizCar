@@ -1,0 +1,310 @@
+fileFormatVersion: 2
+guid: 3b0654ae30d26334799dd76ed339ca0e
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: ball
+    100002: ball001
+    100004: banner_props
+    100006: beach-chairs_1
+    100008: beach-chairs_2
+    100010: beach-chairs_3
+    100012: blue_basket
+    100014: blue_chair
+    100016: blue_umeralla
+    100018: blue_umeralla001
+    100020: boat
+    100022: bridge
+    100024: building
+    100026: 'building '
+    100028: building 1
+    100030: building 2
+    100032: cave
+    100034: cave_final
+    100036: cave_final001
+    100038: faterfall
+    100040: faterfall001
+    100042: fence
+    100044: fence002
+    100046: fence003
+    100048: GOAT
+    100050: Group002
+    100052: //RootNode
+    100054: jungle_ground
+    100056: Plane002
+    100058: Plane003
+    100060: Plane004
+    100062: props
+    100064: props 1
+    100066: props 2
+    100068: props 3
+    100070: red_basket
+    100072: red_chair
+    100074: red_chair001
+    100076: red_chair002
+    100078: red_umeralla
+    100080: Tube005
+    100082: Tube006
+    100084: Tube007
+    100086: water
+    100088: wood_bridge
+    400000: ball
+    400002: ball001
+    400004: banner_props
+    400006: beach-chairs_1
+    400008: beach-chairs_2
+    400010: beach-chairs_3
+    400012: blue_basket
+    400014: blue_chair
+    400016: blue_umeralla
+    400018: blue_umeralla001
+    400020: boat
+    400022: bridge
+    400024: building
+    400026: 'building '
+    400028: building 1
+    400030: building 2
+    400032: cave
+    400034: cave_final
+    400036: cave_final001
+    400038: faterfall
+    400040: faterfall001
+    400042: fence
+    400044: fence002
+    400046: fence003
+    400048: GOAT
+    400050: Group002
+    400052: //RootNode
+    400054: jungle_ground
+    400056: Plane002
+    400058: Plane003
+    400060: Plane004
+    400062: props
+    400064: props 1
+    400066: props 2
+    400068: props 3
+    400070: red_basket
+    400072: red_chair
+    400074: red_chair001
+    400076: red_chair002
+    400078: red_umeralla
+    400080: Tube005
+    400082: Tube006
+    400084: Tube007
+    400086: water
+    400088: wood_bridge
+    2100000: 'Material #233'
+    2100002: 'Material #237'
+    2100004: 'Material #223'
+    2100006: 'Material #360'
+    2100008: 'Material #211'
+    2100010: 'Material #210'
+    2100012: 'Material #212'
+    2100014: 'Material #213'
+    2100016: 'Material #337'
+    2100018: road_fence_01
+    2100020: 'Material #27'
+    2100022: 'Material #374'
+    2100024: 'Material #109'
+    2100026: 'Material #110'
+    2100028: 'Material #112'
+    2100030: 'Material #111'
+    2100032: 'Material #114'
+    2100034: 'Material #113'
+    2300000: ball
+    2300002: ball001
+    2300004: banner_props
+    2300006: blue_basket
+    2300008: blue_chair
+    2300010: blue_umeralla
+    2300012: blue_umeralla001
+    2300014: boat
+    2300016: building
+    2300018: 'building '
+    2300020: building 1
+    2300022: building 2
+    2300024: cave_final
+    2300026: cave_final001
+    2300028: faterfall
+    2300030: faterfall001
+    2300032: fence
+    2300034: fence002
+    2300036: fence003
+    2300038: GOAT
+    2300040: jungle_ground
+    2300042: Plane002
+    2300044: Plane003
+    2300046: Plane004
+    2300048: props
+    2300050: props 1
+    2300052: props 2
+    2300054: props 3
+    2300056: red_basket
+    2300058: red_chair
+    2300060: red_chair001
+    2300062: red_chair002
+    2300064: red_umeralla
+    2300066: Tube005
+    2300068: Tube006
+    2300070: Tube007
+    2300072: water
+    2300074: wood_bridge
+    3300000: ball
+    3300002: ball001
+    3300004: banner_props
+    3300006: blue_basket
+    3300008: blue_chair
+    3300010: blue_umeralla
+    3300012: blue_umeralla001
+    3300014: boat
+    3300016: building
+    3300018: 'building '
+    3300020: building 1
+    3300022: building 2
+    3300024: cave_final
+    3300026: cave_final001
+    3300028: faterfall
+    3300030: faterfall001
+    3300032: fence
+    3300034: fence002
+    3300036: fence003
+    3300038: GOAT
+    3300040: jungle_ground
+    3300042: Plane002
+    3300044: Plane003
+    3300046: Plane004
+    3300048: props
+    3300050: props 1
+    3300052: props 2
+    3300054: props 3
+    3300056: red_basket
+    3300058: red_chair
+    3300060: red_chair001
+    3300062: red_chair002
+    3300064: red_umeralla
+    3300066: Tube005
+    3300068: Tube006
+    3300070: Tube007
+    3300072: water
+    3300074: wood_bridge
+    4300000: water
+    4300002: props
+    4300004: props
+    4300006: props
+    4300008: boat
+    4300010: cave_final
+    4300012: 'building '
+    4300014: props
+    4300016: building
+    4300018: building
+    4300020: building
+    4300022: GOAT
+    4300024: banner_props
+    4300026: fence
+    4300028: fence002
+    4300030: cave_final001
+    4300032: fence003
+    4300034: ball
+    4300036: red_basket
+    4300038: blue_basket
+    4300040: Tube005
+    4300042: Tube007
+    4300044: ball001
+    4300046: Tube006
+    4300048: blue_umeralla
+    4300050: red_chair001
+    4300052: blue_umeralla001
+    4300054: red_chair002
+    4300056: red_chair
+    4300058: blue_chair
+    4300060: red_umeralla
+    4300062: Plane002
+    4300064: Plane003
+    4300066: Plane004
+    4300068: faterfall
+    4300070: wood_bridge
+    4300072: jungle_ground
+    4300074: faterfall001
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
