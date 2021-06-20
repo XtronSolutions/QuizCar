@@ -15,6 +15,8 @@ public class HudTutorial : MonoBehaviour {
     // Use this for initialization
     void OnEnable() {
         i = 0;
+
+        PlayerPrefs.SetInt(GameData.TUTORIALKEY, 0);
         if (PlayerPrefs.GetInt(GameData.TUTORIALKEY, 1) == 1)
         {
             isTutorial = true;

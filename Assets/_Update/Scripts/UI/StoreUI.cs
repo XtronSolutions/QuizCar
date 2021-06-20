@@ -37,8 +37,9 @@ public class StoreUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        adBtn.interactable = AdsManager.Instance.isRewardedAdLoaded;
-        if(adBtn.interactable)
+       //adBtn.interactable = AdsManager.Instance.isRewardedAdLoaded;
+        adBtn.interactable = false;
+        if (adBtn.interactable)
         {
             adText.text = "Watch AD";
         }
@@ -100,7 +101,7 @@ public class StoreUI : MonoBehaviour {
     }
     public void WatchAd()
     {
-        AdsManager.Instance.ShowRewardedVideoAd(OnAdFinished);
+       // AdsManager.Instance.ShowRewardedVideoAd(OnAdFinished);
        
     }
 
@@ -140,11 +141,11 @@ public class StoreUI : MonoBehaviour {
     }
     public void BuyCoins(string pkg)
     {
-        ShopManager.Instance.PurchasePackage(pkg, OnPurchesed);
+        //ShopManager.Instance.PurchasePackage(pkg, OnPurchesed);
     }
     public void BuyAll()
     {
-        ShopManager.Instance.PurchasePackage("4", OnPurchesed);
+        //ShopManager.Instance.PurchasePackage("4", OnPurchesed);
     }
 
     void OnPurchesed(string id)

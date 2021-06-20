@@ -140,8 +140,12 @@ public class PowerUpManager : MonoBehaviour
         if (!QuestionSelected)
         {
             QuestionSelected = true;
-            if (FirebaseManager.Instance.DataQuestionsLocal.Count > 0)
+            if (FirebaseManager.Instance.DataQuestionsLocal.Count <= 0)
             {
+                Debug.Log("All Questions ended, starting again");
+                FirebaseManager.Instance.CopyList();
+            }
+
                 int _index = Random.Range(0, FirebaseManager.Instance.DataQuestionsLocal.Count);
                 QuestionData _data = FirebaseManager.Instance.DataQuestionsLocal[_index];
                 FirebaseManager.Instance.DataQuestionsLocal.RemoveAt(_index);
@@ -150,12 +154,14 @@ public class PowerUpManager : MonoBehaviour
                 QuestionObj.GetComponent<QuestionManager>().MainData = _data;
                 QuestionObj.GetComponent<QuestionManager>().PowerInstance = this;
                 QuestionObj.GetComponent<QuestionManager>().SetInformation(); 
-            }
-            else
-            {
-                Time.timeScale = 1;
-                Debug.Log("no question remains");
-            }
+
+                //Time.timeScale = 1;
+                //GlobalVariables.isPause = false;
+                //Controls.IsHandBrake = false;
+                //Controls.StartEngine = true;
+                //QuestionSelected = false;
+                //Time.timeScale = 1;
+                //Debug.Log("no question remains");
         }
     }
     public void SelectRandomQuestion()

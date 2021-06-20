@@ -42,11 +42,14 @@ public class PowerUps : MonoBehaviour
             }
 
             //powerUp.SelectRandomPowerUp();
-             Controls.IsHandBrake = true;
+            GlobalVariables.isPause = true;
+            Controls.IsHandBrake = true;
              powerUp.SelectRandomQuestion();
             _hit.transform.root.GetComponent<PlayerAudioManager> ().PlayPowerUpPickUp ();
-		
-		}
+            
+
+
+        }
 
 		if (_hit.CompareTag ("AI")) {
 			DisablePowerUp ();
