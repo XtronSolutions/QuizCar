@@ -51,47 +51,50 @@ public class Track : MonoBehaviour {
        // {
        //     Instantiate(coinPrefab, transforms2[i].position, transforms2[i].rotation);
        // }
-        Transform[] wps = wayPoints.GetComponentsInChildren<Transform>();
-        int coinDistance = 9;
-        for (int i = coinDistance; i < wps.Length; i+= coinDistance)
-        {
-           
-            float x = wps[i].position.x;
-            float y = wps[i].position.y + 1.05f;
-            float z = wps[i].position.z;
-            //  x = y = z = 0;
 
-            Vector3 v = new Vector3(x, y, z);
-            GameObject coin = Instantiate(coinPrefab, v,wps[i].rotation);
+        //commented for couins
+        //Transform[] wps = wayPoints.GetComponentsInChildren<Transform>();
+        //int coinDistance = 9;
+        //for (int i = coinDistance; i < wps.Length; i += coinDistance)
+        //{
 
-             v = new Vector3(x-4,y,z);
-            GameObject t = Instantiate(coinPrefab, v, wps[i].rotation, coin.transform);
-            t.transform.localPosition = new Vector3(-4, 0, 0);
-            t.transform.parent = null;
+        //    float x = wps[i].position.x;
+        //    float y = wps[i].position.y + 2.05f;
+        //    float z = wps[i].position.z;
+        //    //  x = y = z = 0;
 
-            t = Instantiate(coinPrefab, v, wps[i].rotation, coin.transform);
-            t.transform.localPosition = new Vector3(-2, 0, 0);
-            t.transform.parent = null;
+        //    Vector3 v = new Vector3(x, y, z);
+        //    GameObject coin = Instantiate(coinPrefab, v, wps[i].rotation);
 
-            t = Instantiate(coinPrefab, v, wps[i].rotation, coin.transform);
-            t.transform.localPosition = new Vector3(4, 0, 0);
-            t.transform.parent = null;
+        //    v = new Vector3(x - 4, y, z);
+        //    GameObject t = Instantiate(coinPrefab, v, wps[i].rotation, coin.transform);
+        //    t.transform.localPosition = new Vector3(-4, 0, 0);
+        //    t.transform.parent = null;
 
-            t = Instantiate(coinPrefab, v, wps[i].rotation, coin.transform);
-            t.transform.localPosition = new Vector3(2, 0, 0);
-            t.transform.parent = null;
+        //    t = Instantiate(coinPrefab, v, wps[i].rotation, coin.transform);
+        //    t.transform.localPosition = new Vector3(-2, 0, 0);
+        //    t.transform.parent = null;
+
+        //    t = Instantiate(coinPrefab, v, wps[i].rotation, coin.transform);
+        //    t.transform.localPosition = new Vector3(4, 0, 0);
+        //    t.transform.parent = null;
+
+        //    t = Instantiate(coinPrefab, v, wps[i].rotation, coin.transform);
+        //    t.transform.localPosition = new Vector3(2, 0, 0);
+        //    t.transform.parent = null;
+        //}
+            //commented for couins
 
             //v = new Vector3(x - 2, y, z);
             //Instantiate(coinPrefab, v, Quaternion.identity);
 
-           
+
 
             //v = new Vector3(x + 2, y, z);
             //Instantiate(coinPrefab, v, Quaternion.identity);
 
             //v = new Vector3(x + 4, y, z);
-            //Instantiate(coinPrefab, v, Quaternion.identity);
-        }
+      
 
     }
   

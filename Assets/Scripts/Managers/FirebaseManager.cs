@@ -6,6 +6,8 @@ using System;
 using TMPro;
 using Firebase.Firestore;
 using Firebase.Extensions;
+using Newtonsoft;
+using Newtonsoft.Json;
 
 [FirestoreData]
 public class UserData
@@ -168,10 +170,12 @@ public class FirebaseManager : MonoBehaviour
     {
         Debug.Log("called");
         Debug.Log(FirebaseAuth.CurrentUser);
+        Debug.Log(FirebaseUser);
 
         if(FirebaseAuth.CurrentUser==null)
         {
             uIMainManager.MainScreen();
+            PlayerPrefs.DeleteAll();
             return;
         }
 
@@ -190,6 +194,11 @@ public class FirebaseManager : MonoBehaviour
                 Debug.Log("Signed in " + FirebaseUser.UserId);
                 OnSuccessLogin();
             }
+        }
+        else
+        {
+            uIMainManager.MainScreen();
+            PlayerPrefs.DeleteAll();
         }
     }
 
@@ -294,6 +303,7 @@ public class FirebaseManager : MonoBehaviour
     public void SignOutFirebase()
     {
         FirebaseAuth.SignOut();
+        PlayerPrefs.DeleteAll();
     }
 
     public void OnDestroy()
@@ -310,6 +320,9 @@ public class FirebaseManager : MonoBehaviour
         docRef.SetAsync(_data).ContinueWithOnMainThread(task => {
             Debug.Log("Added data document in the users collection.");
         });
+
+        var JsonString = JsonConvert.SerializeObject(_data);
+        PlayerPrefs.SetString("PlayerData", JsonString);
     }
 
     public void GetFireStoreData(bool isLogin=false)
@@ -327,6 +340,9 @@ public class FirebaseManager : MonoBehaviour
                 Debug.Log(userProfile.EmailAddress);
                 Debug.Log(userProfile.PhoneNumber);
                 Debug.Log(userProfile.Data.QuestionAnswered);
+
+                var JsonString = JsonConvert.SerializeObject(userProfile);
+                PlayerPrefs.SetString("PlayerData", JsonString);
 
                 if(isLogin)
                     uIMainManager.OnSignInSuccess();

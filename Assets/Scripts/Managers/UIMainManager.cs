@@ -117,7 +117,7 @@ public class UIMainManager : MonoBehaviour
     public void AssignScreenValues()
     {
         UserProfile _data = firebaseManager.userProfile;
-        tempScreen.Name.text="Name : "+ _data.Name;
+        tempScreen.Name.text= _data.Name;
         tempScreen.Email.text = "Email : " + _data.EmailAddress;
         tempScreen.UserID.text = "UserID : " + _data.UID;
         tempScreen.Phone.text = "Phone : " + _data.PhoneNumber;
@@ -451,7 +451,7 @@ public class UIMainManager : MonoBehaviour
     {
         GameData.isDay = true;
         FirebaseManager.Instance.CopyList();
-        SceneManager.LoadScene("Env1",LoadSceneMode.Single);
+        SceneManager.LoadScene("Env2",LoadSceneMode.Single);
     }
     #endregion
     // Update is called once per frame

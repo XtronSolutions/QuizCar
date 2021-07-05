@@ -69,7 +69,7 @@ public class PlayerRespawn : MonoBehaviour
 
         if(racerRegister.ClosestDP!=null)
         {
-            Vector3 v = new Vector3(racerRegister.ClosestDP.position.x, racerRegister.ClosestDP.position.y + 2, racerRegister.ClosestDP.position.z);
+            Vector3 v = new Vector3(racerRegister.ClosestDP.position.x, racerRegister.ClosestDP.position.y + 5, racerRegister.ClosestDP.position.z);
             Car.transform.position = v;
             Car.transform.rotation = racerRegister.ClosestDP.rotation;
         }

@@ -164,7 +164,7 @@ public class QuestionManager : MonoBehaviour
         {
             ToggleButtons(true);
             ButtonEvents();
-            Debug.Log(MainData.select);
+           // Debug.Log(MainData.select);
 
             if (MainData.select.ToLower() == "true")
                 IsCorrect = true;
