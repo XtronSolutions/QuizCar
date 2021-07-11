@@ -6,7 +6,7 @@ public class PlayerRespawn : MonoBehaviour
 {
 	private GameObject Car;
 	private vehicleHandling carHandling;
-	public Racer_Register racerRegister;
+    public Racer_Register racerRegister = null;
 	public  float respawnTime =1f;
 	private float wrongWayRespawnTimer;
 
@@ -25,6 +25,14 @@ public class PlayerRespawn : MonoBehaviour
 		if (stopRespawning)
 			return;
 
+        if (racerRegister==null || racerRegister.RacerDetail==null)
+        {
+            Car = PlayerManagerScript.instance.Car;
+            carHandling = Car.GetComponent<vehicleHandling>();
+            racerRegister = Car.GetComponent<Racer_Register>();
+            return;
+        }
+
 		if (carHandling.carStuck) 
 		{
 
@@ -41,7 +49,7 @@ public class PlayerRespawn : MonoBehaviour
 
         }
 
-		if ((racerRegister.RacerDetail.RacerWrongWay || racerRegister.RacerDetail.RacerOutOfBound ) &&  !racerRegister.IsRacerFinished)
+        if ((racerRegister.RacerDetail.RacerWrongWay || racerRegister.RacerDetail.RacerOutOfBound ) &&  !racerRegister.IsRacerFinished)
 		{
 			wrongWayRespawnTimer -= Time.deltaTime;
 			if (wrongWayRespawnTimer < 0) 
@@ -69,7 +77,7 @@ public class PlayerRespawn : MonoBehaviour
 
         if(racerRegister.ClosestDP!=null)
         {
-            Vector3 v = new Vector3(racerRegister.ClosestDP.position.x, racerRegister.ClosestDP.position.y + 5, racerRegister.ClosestDP.position.z);
+            Vector3 v = new Vector3(racerRegister.ClosestDP.position.x, racerRegister.ClosestDP.position.y + 3, racerRegister.ClosestDP.position.z);
             Car.transform.position = v;
             Car.transform.rotation = racerRegister.ClosestDP.rotation;
         }

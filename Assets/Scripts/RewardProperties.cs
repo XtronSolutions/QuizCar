@@ -257,8 +257,6 @@ public class RewardProperties : SingeltonBase<RewardProperties> {
 	}
 
 	public int GetBuggySelected(){
-
-
 		return PlayerPrefs.GetInt (BuggiesSelected,0);
 	}
 

@@ -429,8 +429,6 @@ namespace RacingGameKit
         /// </summary>
         private void InitRace()
         {
-
-           
             if (RaceLaps < 1) RaceLaps = 1;
             if (RacePlayers < 1) RacePlayers = 1;
 
@@ -585,7 +583,21 @@ namespace RacingGameKit
                             Debug.Log(id);
                             if (name == null) name = "Player";
                             if (id == null) id = UnityEngine.Random.Range(100000, 99999).ToString();
-                            iRacer = PhotonNetwork.Instantiate (onlineBuggyToSpawn, SPItems [i].transform.position, SPItems [i].transform.rotation, 0, 
+  
+                            int IndexValue = 0;
+
+                            for (int k = 0; k < PhotonNetwork.PlayerList.Length; k++)
+                            {
+                                if(PhotonNetwork.LocalPlayer.ActorNumber== PhotonNetwork.PlayerList[k].ActorNumber)
+                                {
+                                    IndexValue = k;
+                                    break;
+                                }
+                            }
+
+                            Debug.LogError("player instantiated: "+ IndexValue);
+
+                            iRacer = PhotonNetwork.Instantiate (onlineBuggyToSpawn, SPItems [IndexValue].transform.position, SPItems [IndexValue].transform.rotation, 0, 
 								new object[] { RewardProperties.Instance.GetBuggyUpgrade (index),
 
 									name.Length == 0 ? "Player" : name, id

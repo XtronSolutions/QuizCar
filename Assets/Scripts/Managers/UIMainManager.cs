@@ -64,6 +64,8 @@ public class MessageScreen
 
 public class UIMainManager : MonoBehaviour
 {
+    public static UIMainManager Instance;
+
     [Tooltip("Reference of all screens in UI")]
     public GameObject[] GameScreens;
 
@@ -104,35 +106,74 @@ public class UIMainManager : MonoBehaviour
     private const string MatchEmailPattern =
        "^(?(\")(\".+?(?<!\\\\)\"@)|(([0-9a-z]((\\.(?!\\.))|[-!#\\$%&'\\*\\+/=\\?\\^`{}|~\\w])*)(?<=[0-9a-z])@))(?([)([(\\d{1,3}.){3}\\d{1,3}])|(([0-9a-z][-0-9a-z]*[0-9a-z]*.)+[a-z0-9][-a-z0-9]{0,22}[a-z0-9]))$";
 
-    void Start()
+    public void CheckFirebaseRef()
     {
+        firebaseManager = FirebaseManager.Instance;
+    }
+    private void OnEnable()
+    {
+        Instance = this;
+        //AssignScreenValues();
+
+        CheckFirebaseRef();
         MainScreenListeners();
         LoginResetVariables();
         LoginListeners();
         RegisterResetVariables();
         RegisterListeners();
+
+        if (GameData.signedIn ==true)
+        {
+            OnSignInSuccess();
+        }
+    }
+    void Start()
+    {
+        //MainScreenListeners();
+        //LoginResetVariables();
+        //LoginListeners();
+        //RegisterResetVariables();
+        //RegisterListeners();
     }
 
     #region tempScreen
     public void AssignScreenValues()
     {
+        CheckFirebaseRef();
         UserProfile _data = firebaseManager.userProfile;
-        tempScreen.Name.text= _data.Name;
-        tempScreen.Email.text = "Email : " + _data.EmailAddress;
-        tempScreen.UserID.text = "UserID : " + _data.UID;
-        tempScreen.Phone.text = "Phone : " + _data.PhoneNumber;
-        tempScreen.Score.text = "Score : " + _data.Data.Score.ToString();
-        tempScreen.QuestionAnswered.text = "Question Answered : " + _data.Data.QuestionAnswered.ToString();
 
-        tempScreen.SignOutButton.onClick.AddListener(OnSignOutClicked);
+        //Debug.Log(_data.Name);
+        //Debug.Log(_data.EmailAddress);
+        //Debug.Log(_data.UID);
+        //Debug.Log(_data.PhoneNumber);
+        //Debug.Log(_data.Data.Score.ToString());
+        //Debug.Log(_data.Data.QuestionAnswered.ToString());
+
+        if (_data != null)
+        {
+            tempScreen.Name.text = _data.Name;
+            tempScreen.Email.text = "Email : " + _data.EmailAddress;
+            tempScreen.UserID.text = "UserID : " + _data.UID;
+            tempScreen.Phone.text = "Phone : " + _data.PhoneNumber;
+            tempScreen.Score.text = "Score : " + _data.Data.Score.ToString();
+            tempScreen.QuestionAnswered.text = "Question Answered : " + _data.Data.QuestionAnswered.ToString();
+
+            tempScreen.SignOutButton.onClick.AddListener(OnSignOutClicked);
+        }
     }
 
     public void OnSignOutClicked()
     {
-        firebaseManager.SignOutFirebase();
+        GameData.signedIn = false;
+        PlayerPrefs.DeleteAll();
+        NextScreen(0);
+        ToggleLoadingScreen(false);
         LoginResetVariables();
         RegisterResetVariables();
-        NextScreen(0);
+
+        CheckFirebaseRef();
+        firebaseManager.SignOutFirebase();
+
     }
     #endregion
 
@@ -206,7 +247,9 @@ public class UIMainManager : MonoBehaviour
             return;
         }
 
+        GameData.SetSavePlayerData(Email, Password);
         ToggleLoadingScreen(true);
+        CheckFirebaseRef();
         firebaseManager.SignInWithEmail(Email, Password);
     }
 
@@ -215,6 +258,7 @@ public class UIMainManager : MonoBehaviour
         ToggleLoadingScreen(false);
         NextScreen(3);
         AssignScreenValues();
+        GameData.signedIn = true;
     }
 
     public void OnSignInFailed(int _code)
@@ -330,7 +374,9 @@ public class UIMainManager : MonoBehaviour
             return;
         }
 
+        GameData.SetSavePlayerData(Email, Password);
         ToggleLoadingScreen(true);
+        CheckFirebaseRef();
         firebaseManager.SignUpWithEmail(Email, Password, Phone,UserName);
     }
 
@@ -339,6 +385,7 @@ public class UIMainManager : MonoBehaviour
         ToggleLoadingScreen(false);
         NextScreen(3);
         AssignScreenValues();
+        GameData.signedIn = true;
     }
 
     public void OnSignUpFailed(int _code)
@@ -446,17 +493,54 @@ public class UIMainManager : MonoBehaviour
 
     #endregion
 
-    #region LoadGameScene
+    #region LoadGameScene (single/multiplayer)
     public void LoadEvironment()
     {
+        CheckFirebaseRef();
+        ToggleLoadingScreen(true);
         GameData.isDay = true;
+        Constants.isMultiplayerSelected = false;
+        Constants.isPrivateModeSelected = false;
+        Constants.joinCode = "";
         FirebaseManager.Instance.CopyList();
         SceneManager.LoadScene("Env2",LoadSceneMode.Single);
     }
-    #endregion
-    // Update is called once per frame
-    void Update()
+
+    public void RaceMultiplayer()
     {
-        
+        CheckFirebaseRef();
+        GameData.selectedEnvironment = 0;
+        ToggleLoadingScreen(true);
+        GameData.isDay = true;
+        Constants.isMultiplayerSelected = true;
+        Constants.isPrivateModeSelected = false;
+        Constants.joinCode = "";
+        FirebaseManager.Instance.CopyList();
+        SceneManager.LoadScene("ConnectionScene", LoadSceneMode.Single);
+    }
+
+
+    #endregion
+
+    private void OnDisable()
+    {
+        MainScreenData.SignUpButton.onClick.RemoveAllListeners();
+        MainScreenData.SignInButton.onClick.RemoveAllListeners();
+
+        LoginScreenData.EmailInput.onValueChanged.RemoveAllListeners();
+        LoginScreenData.PasswordInput.onValueChanged.RemoveAllListeners();
+        LoginScreenData.SignInButton.onClick.RemoveAllListeners();
+        LoginScreenData.BackButton.onClick.RemoveAllListeners();
+
+        RegisterScreenData.Name.onValueChanged.RemoveAllListeners();
+        RegisterScreenData.EmailInput.onValueChanged.RemoveAllListeners();
+        RegisterScreenData.PasswordInput.onValueChanged.RemoveAllListeners();
+        RegisterScreenData.ConfirmInput.onValueChanged.RemoveAllListeners();
+        RegisterScreenData.PhoneInput.onValueChanged.RemoveAllListeners();
+
+        RegisterScreenData.SignUpButton.onClick.RemoveAllListeners();
+        RegisterScreenData.BackButton.onClick.RemoveAllListeners();
+
+        tempScreen.SignOutButton.onClick.RemoveAllListeners();
     }
 }

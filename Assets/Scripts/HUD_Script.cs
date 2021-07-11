@@ -89,11 +89,11 @@ public class HUD_Script : MonoBehaviour
 					listOfOpponentProgressBars.Add (new OpponentProgressBars (opponentsProgress [j], racerLists [i]));
                     
                     
-                        GameObject c = Instantiate(carPointer);
-                        c.GetComponent<CarAvatar>().SetTexture(img.sprite);
-                        c.GetComponent<CarAvatar>().target = racerLists[i].me;
-                        c.GetComponent<CarAvatar>().ID = racerLists[i].ID;
-                        carAvatarsList.Add(c.GetComponent<CarAvatar>());
+                        //GameObject c = Instantiate(carPointer);
+                        //c.GetComponent<CarAvatar>().SetTexture(img.sprite);
+                        //c.GetComponent<CarAvatar>().target = racerLists[i].me;
+                        //c.GetComponent<CarAvatar>().ID = racerLists[i].ID;
+                        //carAvatarsList.Add(c.GetComponent<CarAvatar>());
                     }
                     
 					j++;
@@ -118,11 +118,11 @@ public class HUD_Script : MonoBehaviour
                         listOfOpponentProgressBars.Add(new OpponentProgressBars(opponentsProgress[j], racerLists[i]));
 
                        
-                            GameObject c = Instantiate(carPointer);
-                            c.GetComponent<CarAvatar>().SetTexture(img.sprite);
-                            c.GetComponent<CarAvatar>().target = racerLists[i].me;
-                            c.GetComponent<CarAvatar>().ID = racerLists[i].ID;
-                            carAvatarsList.Add(c.GetComponent<CarAvatar>());
+                            //GameObject c = Instantiate(carPointer);
+                            //c.GetComponent<CarAvatar>().SetTexture(img.sprite);
+                            //c.GetComponent<CarAvatar>().target = racerLists[i].me;
+                            //c.GetComponent<CarAvatar>().ID = racerLists[i].ID;
+                            //carAvatarsList.Add(c.GetComponent<CarAvatar>());
                         }
                         j++;
                     }

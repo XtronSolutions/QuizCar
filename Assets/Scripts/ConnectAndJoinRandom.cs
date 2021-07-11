@@ -94,12 +94,12 @@ namespace Photon.Pun.UtilityScripts
                                 if (GameData.trackNo < 3)
                                 {
                                     GameData.isDay = true;
-                                    PhotonNetwork.LoadLevel("ForestBeachEnvLoader");
+                                    PhotonNetwork.LoadLevel("Env2"); //ForestBeachEnvLoader
                                 }
                                 else
                                 {
                                     GameData.isDay = false;
-                                    PhotonNetwork.LoadLevel("ForestBeachEnvNightNew");
+                                    PhotonNetwork.LoadLevel("Env2");//ForestBeachEnvNightNew
                                 }
                             }
                             else
@@ -109,12 +109,12 @@ namespace Photon.Pun.UtilityScripts
                                 if (GameData.trackNo < 3)
                                 {
                                     GameData.isDay = true;
-                                    PhotonNetwork.LoadLevel("desert_01");
+                                    PhotonNetwork.LoadLevel("Env2");//desert_01
                                 }
                                 else
                                 {
                                     GameData.isDay = false;
-                                    PhotonNetwork.LoadLevel("desert_02night");
+                                    PhotonNetwork.LoadLevel("Env2");//desert_02night
                                 }
                             }
                             isRaceStarted = true;
@@ -262,7 +262,7 @@ namespace Photon.Pun.UtilityScripts
 					dps [indexToSet].name = "-1";
 				}
 				alertOnConnect.Play ();
-				photonView.RPC ("OnJoin", RpcTarget.Others, PhotonNetwork.LocalPlayer.NickName, Race_Manager.playerSpawnPosition);
+				//photonView.RPC ("OnJoin", RpcTarget.Others, PhotonNetwork.LocalPlayer.NickName, Race_Manager.playerSpawnPosition);
 			}
 		}
 
@@ -311,13 +311,13 @@ namespace Photon.Pun.UtilityScripts
 			if (PhotonNetwork.IsConnected) {
 				PhotonNetwork.Disconnect ();
 			}
-            DontDestroy dd = FindObjectOfType<DontDestroy>();
-            if (dd != null)
-            {
-                Destroy(dd);
-            }
+            //DontDestroy dd = FindObjectOfType<DontDestroy>();
+            //if (dd != null)
+            //{
+            //    Destroy(dd);
+            //}
 			Destroy (this.gameObject);
-			SceneManager.LoadScene ("MainMenuScene");
+			SceneManager.LoadScene ("MainMenu",LoadSceneMode.Single);
 		}
 
 		public void OnTryAgain(){
@@ -326,7 +326,7 @@ namespace Photon.Pun.UtilityScripts
 				PhotonNetwork.Disconnect ();
 			}
 			Destroy (this.gameObject);
-			SceneManager.LoadScene ("MultiplayerConnectionScene");
+			SceneManager.LoadScene ("ConnectionScene", LoadSceneMode.Single);
 		}
     }
 
@@ -352,6 +352,7 @@ public class ConnectAndJoinRandomInspector : Editor
     public override void OnInspectorGUI()
     {
         this.DrawDefaultInspector(); // Draw the normal inspector
+
 
         if (Application.isPlaying && !PhotonNetwork.IsConnected)
         {

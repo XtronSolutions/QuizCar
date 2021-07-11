@@ -41,16 +41,16 @@ public class DesertUIManager : MonoBehaviour
         {
             if (Constants.isPrivateModeSelected)
             {
-                SceneManager.LoadScene("PrivateMultiplayerConnectionScene");
+                SceneManager.LoadScene("ConnectionScene", LoadSceneMode.Single);//PrivateMultiplayerConnectionScene
             }
             else
             {
-                SceneManager.LoadScene("MultiplayerConnectionScene");
+                SceneManager.LoadScene("ConnectionScene", LoadSceneMode.Single);//MultiplayerConnectionScene
             }
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);//SceneManager.GetActiveScene().buildIndex
         }
 	}
 
@@ -61,7 +61,7 @@ public class DesertUIManager : MonoBehaviour
 	{
         
         Time.timeScale = 1;
-		SceneManager.LoadScene ("MainMenu");
+		SceneManager.LoadScene ("MainMenu", LoadSceneMode.Single);
 	}
 
 	public void GoToMainMenuScene()
@@ -78,14 +78,14 @@ public class DesertUIManager : MonoBehaviour
 
 		Resources.UnloadUnusedAssets ();
         //SceneManager.LoadScene ("MainMenuScene");
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
 	public void GoToMainMenuSceneDesert(){
 		Time.timeScale = 1;
 		loading_screen.SetActive (true);
         //SceneManager.LoadScene ("MainMenuScene");
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
 	/// <summary>

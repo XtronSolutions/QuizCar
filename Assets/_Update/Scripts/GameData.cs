@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using MiniJSON;
-public class GameData : MonoBehaviour
+using Newtonsoft.Json;
+
+public class PlayerDataSave
 {
+    public string email;
+    public string pass;
+}
 
-
+    public class GameData : MonoBehaviour
+{
     public static int selectedEnvironment;  //0 for forest, 1 for desert
     public static int trackNo;
     public static int selectedCar;
+    public static bool signedIn = false;
 
     public static int controlsType = 2; //0  for tilt, 1 for arrows and brakes on both corner, 2 for arrow on left  corner and braks on right corner
     public static float steeringSensitivity = 2;
@@ -25,7 +32,8 @@ public class GameData : MonoBehaviour
     const string CONTROLSKEY = "controls";
     const string SOUNDKEY = "sound";
     const string MUSICKEY = "music";
-   public const string TUTORIALKEY = "tutorial";
+    public const string TUTORIALKEY = "tutorial";
+    public static string PlayerDataKey = "PlayerData";
     void Start()
     {
 
@@ -36,6 +44,22 @@ public class GameData : MonoBehaviour
     {
 
     }
+
+    public static void SetSavePlayerData(string email, string pass)
+    {
+        PlayerDataSave _dataSave = new PlayerDataSave();
+        _dataSave.email = email;
+        _dataSave.pass = pass;
+
+        var JsonString = JsonConvert.SerializeObject(_dataSave);
+        PlayerPrefs.SetString(GameData.PlayerDataKey, JsonString);
+    }
+
+    public static string GetSavePlayerData()
+    {
+        return PlayerPrefs.GetString(GameData.PlayerDataKey,"");
+    }
+
     public static void PushData()
     {
         PlayfabManager.Instance.SetPlayerStatistics();

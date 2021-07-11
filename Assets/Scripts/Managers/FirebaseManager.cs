@@ -6,7 +6,6 @@ using System;
 using TMPro;
 using Firebase.Firestore;
 using Firebase.Extensions;
-using Newtonsoft;
 using Newtonsoft.Json;
 
 [FirestoreData]
@@ -88,18 +87,43 @@ public class FirebaseManager : MonoBehaviour
 
     private bool initialized = false;
     private bool activateFetched = false;
+    private bool SignInAutomatically = false;
+    PlayerDataSave jsonObject;
 
-    public static FirebaseManager Instance;
+    public static FirebaseManager Instance=null;
    // public event Action OnLoggin;
     public UIMainManager uIMainManager;
 
-    void Start()
+    public void CheckRef()
     {
-        if (!Instance || Instance==null)
+        uIMainManager = GameObject.FindObjectOfType<UIMainManager>();
+    }
+    void OnEnable()
+    {
+        CheckRef();
+        //PlayerPrefs.DeleteAll();
+        if (Instance == null)
         {
             Instance = this;
+            Debug.LogError("calllleddd");
             DontDestroyOnLoad(this.gameObject);
         }
+        else
+        {
+          Destroy(this.gameObject);
+          return;
+        }
+
+        Debug.LogError("2");
+        SignInAutomatically = false;
+        string _data = GameData.GetSavePlayerData();
+
+        if (_data != "" && _data != null)
+        {
+            jsonObject = JsonConvert.DeserializeObject<PlayerDataSave>(_data);
+            SignInAutomatically = true;
+        }
+
         initialized = false;
         activateFetched = false;
         //OnLoggin += OnSuccessLogin;
@@ -150,8 +174,17 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
+    public void LogginFailed()
+    {
+        CheckRef();
+        PlayerPrefs.DeleteAll();
+        uIMainManager.ToggleLoadingScreen(false);
+        uIMainManager.NextScreen(0);
+    }
+
     public void OnFirebaseInitialize(DependencyStatus Status)
     {
+        CheckRef();
         if (Status == DependencyStatus.Available)
         {
             FirebaseAuth = Firebase.Auth.FirebaseAuth.DefaultInstance;
@@ -159,6 +192,15 @@ public class FirebaseManager : MonoBehaviour
             Debug.Log("initialize done");
             //uIMainManager.ToggleLoadingScreen(false);
             FirebaseAuth.StateChanged += AuthStateChanged;
+
+            if(SignInAutomatically)
+            {
+                uIMainManager.ToggleLoadingScreen(true);
+                SignInWithEmail(jsonObject.email, jsonObject.pass);
+            }else
+            {
+                LogginFailed();
+            }
         }
         else
         {
@@ -174,31 +216,29 @@ public class FirebaseManager : MonoBehaviour
 
         if(FirebaseAuth.CurrentUser==null)
         {
-            uIMainManager.MainScreen();
-            PlayerPrefs.DeleteAll();
+            LogginFailed();
             return;
         }
 
         if (FirebaseAuth.CurrentUser != FirebaseUser)
         {
-            bool signedIn = FirebaseUser != FirebaseAuth.CurrentUser && FirebaseAuth.CurrentUser != null;
-            Debug.Log("signedIn");
-            if (!signedIn && FirebaseUser != null)
-            {
-                Debug.Log("Signed out " + FirebaseUser.UserId);
-                uIMainManager.ToggleLoadingScreen(false);
-            }
-            FirebaseUser = FirebaseAuth.CurrentUser;
-            if (signedIn)
-            {
-                Debug.Log("Signed in " + FirebaseUser.UserId);
-                OnSuccessLogin();
-            }
+            //bool signedIn = FirebaseUser != FirebaseAuth.CurrentUser && FirebaseAuth.CurrentUser != null;
+            //Debug.Log("signedIn");
+            //if (!signedIn && FirebaseUser != null)
+            //{
+            //    Debug.Log("Signed out " + FirebaseUser.UserId);
+            //    uIMainManager.ToggleLoadingScreen(false);
+            //}
+            //FirebaseUser = FirebaseAuth.CurrentUser;
+            //if (signedIn)
+            //{
+            //    Debug.Log("Signed in " + FirebaseUser.UserId);
+            //    OnSuccessLogin();
+            //}
         }
         else
         {
-            uIMainManager.MainScreen();
-            PlayerPrefs.DeleteAll();
+            LogginFailed();
         }
     }
 
@@ -220,17 +260,20 @@ public class FirebaseManager : MonoBehaviour
 
     public void SignUpWithEmail(string email,string password,string phone, string name)
     {
+        CheckRef();
         FirebaseAuth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task => {
             if (task.IsCanceled)
             {
                 Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
                 uIMainManager.OnSignUpFailed(0);
+                LogginFailed();
                 return;
             }
             if (task.IsFaulted)
             {
                 Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
                 uIMainManager.OnSignUpFailed(1);
+                LogginFailed();
                 return;
             }
 
@@ -276,12 +319,14 @@ public class FirebaseManager : MonoBehaviour
 
     public void SignInWithEmail(string _email,string _pass)
     {
+        CheckRef();
         FirebaseAuth.SignInWithEmailAndPasswordAsync(_email, _pass).ContinueWithOnMainThread(task =>
         {
             if (task.IsCanceled)
             {
                 Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
                 uIMainManager.OnSignInFailed(0);
+                LogginFailed();
                 return;
             }
             if (task.IsFaulted)
@@ -289,6 +334,7 @@ public class FirebaseManager : MonoBehaviour
                 Debug.Log(task.Exception.ToString());
                 Debug.Log(task.Exception.Message);
                 uIMainManager.OnSignInFailed(1);
+                LogginFailed();
                 return;
             }
 
@@ -302,15 +348,17 @@ public class FirebaseManager : MonoBehaviour
 
     public void SignOutFirebase()
     {
-        FirebaseAuth.SignOut();
         PlayerPrefs.DeleteAll();
+
+        if(FirebaseAuth!=null)
+            FirebaseAuth.SignOut();
     }
 
-    public void OnDestroy()
-    {
-        FirebaseAuth.StateChanged -= AuthStateChanged;
-        FirebaseAuth = null;
-    }
+    //public void OnDestroy()
+    //{
+    //    FirebaseAuth.StateChanged -= AuthStateChanged;
+    //    FirebaseAuth = null;
+    //}
 
 
     #region Firestore DataBase
@@ -321,12 +369,13 @@ public class FirebaseManager : MonoBehaviour
             Debug.Log("Added data document in the users collection.");
         });
 
-        var JsonString = JsonConvert.SerializeObject(_data);
-        PlayerPrefs.SetString("PlayerData", JsonString);
+        //var JsonString = JsonConvert.SerializeObject(_data);
+        //PlayerPrefs.SetString("PlayerData", JsonString);
     }
 
     public void GetFireStoreData(bool isLogin=false)
     {
+        CheckRef();
         DocumentReference docRef = DatabaseInstance.Collection("users").Document(FirebaseUser.UserId);
         docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
@@ -341,8 +390,8 @@ public class FirebaseManager : MonoBehaviour
                 Debug.Log(userProfile.PhoneNumber);
                 Debug.Log(userProfile.Data.QuestionAnswered);
 
-                var JsonString = JsonConvert.SerializeObject(userProfile);
-                PlayerPrefs.SetString("PlayerData", JsonString);
+                //var JsonString = JsonConvert.SerializeObject(userProfile);
+                //PlayerPrefs.SetString("PlayerData", JsonString);
 
                 if(isLogin)
                     uIMainManager.OnSignInSuccess();
@@ -366,6 +415,7 @@ public class FirebaseManager : MonoBehaviour
 
     public void GetQuestionsData(bool isLogin = false)
     {
+        CheckRef();
         DataQuestions.Clear();
         DataQuestionsLocal.Clear();
         Query QuestionCollection = DatabaseInstance.Collection("fl_content");
