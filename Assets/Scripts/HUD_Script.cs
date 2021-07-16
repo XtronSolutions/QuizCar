@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using RacingGameKit;
+using Photon.Pun;
 
 public class HUD_Script : MonoBehaviour 
 {
@@ -26,6 +27,7 @@ public class HUD_Script : MonoBehaviour
 
     public Sprite []dummyAvatars;
     public Sprite carAvatar;
+    public Sprite[] carAvatars;
 
     public Slider[] opponentsProgress;
 
@@ -149,7 +151,29 @@ public class HUD_Script : MonoBehaviour
 			racerReg = PlayerManagerScript.instance.Car.GetComponent<Racer_Register> ();
 		}
 
-		if (racerDetail == null) {
+        if (progressBar2.targetGraphic.GetComponent<Image>().sprite == null)
+        {
+            if (Constants.isMultiplayerSelected)
+            {
+                int IndexValue = 0;
+
+                for (int k = 0; k < PhotonNetwork.PlayerList.Length; k++)
+                {
+                    if (PhotonNetwork.LocalPlayer.ActorNumber == PhotonNetwork.PlayerList[k].ActorNumber)
+                    {
+                        IndexValue = k;
+                        break;
+                    }
+                }
+
+                progressBar2.targetGraphic.GetComponent<Image>().sprite = carAvatars[IndexValue];
+            }else
+            {
+                progressBar2.targetGraphic.GetComponent<Image>().sprite = carAvatar;
+            }
+        }
+
+        if (racerDetail == null) {
 			racerDetail = racerReg.RacerDetail;
 			racerDetail.avatarholder = progressBar2.targetGraphic.GetComponent<Image> ();
 		}
@@ -214,11 +238,6 @@ public class HUD_Script : MonoBehaviour
             //			p.avatar.sprite = racerLists [p.id].avatar;
         }
         Total_Place.text = "/ " + Mathf.Clamp(t,1,raceManager.RacePlayers+1);
-
-        if (progressBar2.targetGraphic.GetComponent<Image>().sprite==null)
-        {
-            progressBar2.targetGraphic.GetComponent<Image>().sprite = carAvatar;
-        }
 
     }
 

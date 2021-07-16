@@ -570,42 +570,64 @@ namespace RacingGameKit
                     if (DeployHumanNow)
                     {
 						if (Constants.isMultiplayerSelected) {
-                            var name = PlayfabManager.PlayerGameName;// FacebookAndPlayFabManager.Instance.FacebookUserName;
-                            var id = PlayfabManager.PlayerID;// FacebookAndPlayFabManager.Instance.FacebookUserId;
+                            var name = FirebaseManager.Instance.userProfile.Name; // PlayfabManager.PlayerGameName;// FacebookAndPlayFabManager.Instance.FacebookUserName;
+                            var id = FirebaseManager.Instance.userProfile.UID;//PlayfabManager.PlayerID;// FacebookAndPlayFabManager.Instance.FacebookUserId;
 
-							var index = RewardProperties.Instance.GetBuggySelected ();
-                            //index = index > 1 ? 1 : index;
-
-                            var onlineBuggyToSpawn = playerBuggies[index].name;
-
-                            //var onlineBuggyToSpawn = index == 0 ? "Buggy1" : "CustomDummyNewOnline2";
-                            Debug.Log(name);
-                            Debug.Log(id);
-                            if (name == null) name = "Player";
-                            if (id == null) id = UnityEngine.Random.Range(100000, 99999).ToString();
-  
                             int IndexValue = 0;
 
                             for (int k = 0; k < PhotonNetwork.PlayerList.Length; k++)
                             {
-                                if(PhotonNetwork.LocalPlayer.ActorNumber== PhotonNetwork.PlayerList[k].ActorNumber)
+                                if (PhotonNetwork.LocalPlayer.ActorNumber == PhotonNetwork.PlayerList[k].ActorNumber)
                                 {
                                     IndexValue = k;
                                     break;
                                 }
                             }
 
+                           // var index = RewardProperties.Instance.GetBuggySelected ();
+                            //index = index > 1 ? 1 : index;
+
+                            var onlineBuggyToSpawn = playerBuggies[IndexValue].name;
+                            //var onlineBuggyToSpawn = index == 0 ? "Buggy1" : "CustomDummyNewOnline2";
+
+                            if (name == null) name = "Player";
+                            if (id == null) id = UnityEngine.Random.Range(100000, 99999).ToString();
+
                             Debug.LogError("player instantiated: "+ IndexValue);
 
                             iRacer = PhotonNetwork.Instantiate (onlineBuggyToSpawn, SPItems [IndexValue].transform.position, SPItems [IndexValue].transform.rotation, 0, 
-								new object[] { RewardProperties.Instance.GetBuggyUpgrade (index),
+								new object[] { RewardProperties.Instance.GetBuggyUpgrade (IndexValue),
 
 									name.Length == 0 ? "Player" : name, id
 								}) as GameObject;
-						} else {
+
+                            //PlayerCarController carInstane = iRacer.GetComponent<PlayerCarController>();
+                            //UpdateCarMaterial MatInstance = this.gameObject.GetComponent<UpdateCarMaterial>();
+                            //Material[] _materials;
+
+                            //for (int j = 0; j < carInstane.MeshParts.Count; j++)
+                            //{
+                            //    _materials = carInstane.MeshParts[j].materials;
+                            //    _materials[0] = MatInstance.GetRelatedMaterial(IndexValue);
+                            //    carInstane.MeshParts[j].materials = _materials;
+                            //}
+
+
+                        } else {
 							iRacer = (GameObject)Instantiate (HumanRacerPrefab, SPItems [i].transform.position, SPItems [i].transform.rotation);
 							iRacer.name = "CustomCarDummyNew(Clone)";
-						}
+
+                            //PlayerCarController carInstane = iRacer.GetComponent<PlayerCarController>();
+                            //UpdateCarMaterial MatInstance = this.gameObject.GetComponent<UpdateCarMaterial>();
+                            //Material[] _materials;
+
+                            //for (int j = 0; j < carInstane.MeshParts.Count; j++)
+                            //{
+                            //    _materials = carInstane.MeshParts[j].materials;
+                            //    _materials[0]= MatInstance.GetRelatedMaterial(1);
+                            //    carInstane.MeshParts[j].materials = _materials;
+                            //}
+                        }
                         Transform CameraTargetTransform = ((GameObject)iRacer).transform.Find("_CameraTarget");
                         if (CameraTargetTransform == null)
                         {

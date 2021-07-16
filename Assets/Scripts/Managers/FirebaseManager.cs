@@ -133,8 +133,8 @@ public class FirebaseManager : MonoBehaviour
     public void OnSuccessLogin()
     {
         Debug.Log("successcalled");
-        GetFireStoreData(false);
-        GetQuestionsData(true);
+        GetFireStoreData(true);
+        GetQuestionsData(false);
     }
 
     public void InitializeFirebase(Action<DependencyStatus> callback)

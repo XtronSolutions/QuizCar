@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCarController : MonoBehaviour
 {
-
+    public List<MeshRenderer> MeshParts;
     MainCamera mainCamera;
     // Use this for initialization
     void Start()

@@ -176,7 +176,7 @@ namespace Photon.Pun.UtilityScripts
             customProperties.Add("t", GameData.trackNo);
 
             var roomOptions = new RoomOptions ();
-			roomOptions.MaxPlayers = 7;
+			roomOptions.MaxPlayers = 6;
 			roomOptions.CustomRoomProperties = customProperties;
 			roomOptions.CustomRoomPropertiesForLobby = new string[]{ "m", "t" };
 

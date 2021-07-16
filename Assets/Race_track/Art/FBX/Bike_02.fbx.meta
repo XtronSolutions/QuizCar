@@ -1,0 +1,94 @@
+fileFormatVersion: 2
+guid: 96dd8df443dd6bb4bad37fafdc3d2055
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BackWheel
+    100002: Body
+    100004: FrontWheel
+    100006: Handle
+    100008: //RootNode
+    100010: Bike_Handle_Wheel1
+    400000: BackWheel
+    400002: Body
+    400004: FrontWheel
+    400006: Handle
+    400008: //RootNode
+    400010: Bike_Handle_Wheel1
+    2300000: BackWheel
+    2300002: Body
+    2300004: FrontWheel
+    2300006: Handle
+    3300000: BackWheel
+    3300002: Body
+    3300004: FrontWheel
+    3300006: Handle
+    4300000: Handle
+    4300002: FrontWheel
+    4300004: Body
+    4300006: BackWheel
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 3
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

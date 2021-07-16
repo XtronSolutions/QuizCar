@@ -103,7 +103,7 @@ namespace Photon.Pun.UtilityScripts
                 customProperties.Add("m", GameData.selectedEnvironment);
                 customProperties.Add("t", GameData.trackNo);
 
-                PhotonNetwork.CreateRoom (roomCode.ToString (), new RoomOptions () { MaxPlayers = 7, PublishUserId = true, CustomRoomProperties = customProperties }, null);
+                PhotonNetwork.CreateRoom (roomCode.ToString (), new RoomOptions () { MaxPlayers = 6, PublishUserId = true, CustomRoomProperties = customProperties }, null);
 				shareCodeText.text = roomCode.ToString ();
 				isConnecting = true;
 			} else {
@@ -129,7 +129,7 @@ namespace Photon.Pun.UtilityScripts
                 var customProperties = new Hashtable();
                 customProperties.Add("m", GameData.selectedEnvironment);
                 customProperties.Add("t", GameData.trackNo);
-                PhotonNetwork.CreateRoom (roomCode.ToString (), new RoomOptions () { MaxPlayers = 7, PublishUserId = true, CustomRoomProperties = customProperties }, null);
+                PhotonNetwork.CreateRoom (roomCode.ToString (), new RoomOptions () { MaxPlayers = 6, PublishUserId = true, CustomRoomProperties = customProperties }, null);
 				shareCodeText.text = roomCode.ToString ();
 			} else {
 				connectingText.SetActive (false);

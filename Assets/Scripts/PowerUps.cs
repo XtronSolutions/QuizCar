@@ -76,7 +76,7 @@ public class PowerUps : MonoBehaviour
 
 	IEnumerator RespawnPowerUps()
 	{
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (30);
         BookObject.SetActive(true);
         this.GetComponent<MeshRenderer> ().enabled = false;
 		this.GetComponent<BoxCollider> ().enabled = true;

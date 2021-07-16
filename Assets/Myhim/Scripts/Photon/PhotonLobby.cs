@@ -44,7 +44,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks {
 	public void CreateRoom(){
 	
 		int randRoomNum = Random.Range (0, 100000);
-		RoomOptions roomOps = new RoomOptions{IsVisible = true, IsOpen = true, MaxPlayers = 7 };
+		RoomOptions roomOps = new RoomOptions{IsVisible = true, IsOpen = true, MaxPlayers = 6 };
 		PhotonNetwork.CreateRoom ("Room " + randRoomNum, roomOps);
 		//ConnectButton.SetActive (false);
 		//CancelButton.SetActive (true);
