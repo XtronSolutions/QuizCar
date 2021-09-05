@@ -318,6 +318,7 @@ public class PlayerManagerScript : MonoBehaviour
 	{   
 		if (!BoostON)
 			BoostON = true;
+
 		_Nitro -= _Nitro*delta;
 		//		NitroButton.transform.localScale = new Vector3 (buttonScale.x + 0.05f, buttonScale.y+ 0.05f, buttonScale.z + 0.05f);
 		//		StartCoroutine (Buttonanimation());

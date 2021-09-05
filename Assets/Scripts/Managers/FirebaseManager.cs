@@ -7,6 +7,9 @@ using TMPro;
 using Firebase.Firestore;
 using Firebase.Extensions;
 using Newtonsoft.Json;
+using Google;
+using System.Threading.Tasks;
+using Firebase.Auth;
 
 [FirestoreData]
 public class UserData
@@ -88,24 +91,46 @@ public class FirebaseManager : MonoBehaviour
     private bool initialized = false;
     private bool activateFetched = false;
     private bool SignInAutomatically = false;
+    private bool SignInGoogleAutomatically = false;
+    private bool SignInFBAutomatically = false;
     PlayerDataSave jsonObject;
 
     public static FirebaseManager Instance=null;
    // public event Action OnLoggin;
+    [HideInInspector]
     public UIMainManager uIMainManager;
+    [HideInInspector]
+    public bool IsGoogleSignIn = false;
+    private string googleSignClientID= "562499227773-qu1kc39mn99s9ltjo8pmfkgq0cqeivsc.apps.googleusercontent.com";
+    private GoogleSignInConfiguration config;
 
     public void CheckRef()
     {
         uIMainManager = GameObject.FindObjectOfType<UIMainManager>();
     }
+    void Start()
+    {
+        //PlayerPrefs.DeleteAll();
+        FBManager.Instance.OnFacebookLoginSuccessful += OnFacebookLogin;
+        FBManager.Instance.OnFacebookInitialized += OnFacebookLogin;
+        FBManager.Instance.OnFacebookLoginFail += OnFacebookLoginFail;
+    }
+
     void OnEnable()
     {
         CheckRef();
+        
         //PlayerPrefs.DeleteAll();
+
+        config= new GoogleSignInConfiguration
+        {
+            RequestIdToken = true,
+            WebClientId = googleSignClientID
+        };
+
         if (Instance == null)
         {
             Instance = this;
-            Debug.LogError("calllleddd");
             DontDestroyOnLoad(this.gameObject);
         }
         else
@@ -114,14 +139,31 @@ public class FirebaseManager : MonoBehaviour
           return;
         }
 
-        Debug.LogError("2");
+        Debug.Log("2");
         SignInAutomatically = false;
+        SignInGoogleAutomatically = false;
+        SignInFBAutomatically = false;
+
         string _data = GameData.GetSavePlayerData();
 
         if (_data != "" && _data != null)
         {
             jsonObject = JsonConvert.DeserializeObject<PlayerDataSave>(_data);
             SignInAutomatically = true;
+        }
+
+        string _googledata = GameData.GetGoogleData();
+
+        if (_googledata != "" && _googledata != null)
+        {
+            SignInGoogleAutomatically = true;
+        }
+
+        string _fbdata = GameData.GetFBData();
+
+        if (_fbdata != "" && _fbdata != null)
+        {
+            SignInFBAutomatically = true;
         }
 
         initialized = false;
@@ -189,7 +231,7 @@ public class FirebaseManager : MonoBehaviour
         {
             FirebaseAuth = Firebase.Auth.FirebaseAuth.DefaultInstance;
             DatabaseInstance= FirebaseFirestore.DefaultInstance;
-            Debug.Log("initialize done");
+            Debug.LogError("initialize done");
             //uIMainManager.ToggleLoadingScreen(false);
             FirebaseAuth.StateChanged += AuthStateChanged;
 
@@ -197,7 +239,16 @@ public class FirebaseManager : MonoBehaviour
             {
                 uIMainManager.ToggleLoadingScreen(true);
                 SignInWithEmail(jsonObject.email, jsonObject.pass);
-            }else
+            }else if(SignInGoogleAutomatically)
+            {
+                uIMainManager.ToggleLoadingScreen(true);
+                SignInWithGoogle(false);
+            }else if(SignInFBAutomatically)
+            {
+                uIMainManager.ToggleLoadingScreen(true);
+                FBManager.Instance.Login();
+            }
+            else
             {
                 LogginFailed();
             }
@@ -286,9 +337,100 @@ public class FirebaseManager : MonoBehaviour
             UpdateUserProfile(FirebaseUser, name, "https://example.com/jane-q-user/profile.jpg");
             SetProfileData(name, FirebaseUser.UserId, phone, FirebaseUser.Email, 0, 0);
             AddFireStoreData(userProfile);
+            GetQuestionsData(false);
             uIMainManager.OnSignUpSuccess();
         });
 
+    }
+
+    public void GuestSignIn()
+    {
+        string ID=UnityEngine.Random.Range(1111,9999).ToString();
+        string name="Guest"+ID;
+        string email=name+"@gmail.com";
+        string phone="065845410";
+        SetProfileData(name, ID, phone, email, 0, 0);
+        GetQuestionsData(false);
+        uIMainManager.OnSignUpSuccess();
+    }
+
+    public void SignInWithGoogle(bool linkWithCurrentAnonUser)
+    {
+        IsGoogleSignIn = true;
+        CheckRef();
+        GoogleSignIn.Configuration = config;
+        //TaskCompletionSource<FirebaseUser> signInCompleted = new TaskCompletionSource<FirebaseUser>();
+        GoogleSignIn.DefaultInstance.SignIn().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCanceled)
+            {
+                Debug.Log("google sign in was cancelled");
+                //signInCompleted.SetCanceled();
+                uIMainManager.OnSignUpFailed(1);
+                LogginFailed();
+                return;
+            }
+            else if (task.IsFaulted)
+            {
+                Debug.Log("google sign in was faulted");
+                uIMainManager.OnSignUpFailed(1);
+                LogginFailed();
+                return;
+            }
+            else
+            {
+                Credential _credential = Firebase.Auth.GoogleAuthProvider.GetCredential(((Task<GoogleSignInUser>)task).Result.IdToken, null);
+                if (linkWithCurrentAnonUser)
+                {
+                //FirebaseAuth.CurrentUser.LinkWithCredentialAsync(_credential).ContinueWith(main => {
+                //    if(main.IsCanceled)
+                //    {
+                //        return;
+                //    }
+                //    else if (main.IsFaulted)
+                //    {
+                //        return;
+                //    }
+                //    else
+                //    {
+
+                //    }
+                //});
+                }
+                else
+                {
+                    SignInWithCredentials(_credential);
+                }
+            }
+        });
+    }
+
+    public void SignInWithCredentials(Credential credential)
+    {
+        CheckRef();
+        FirebaseAuth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(task => {
+            if (task.IsCanceled)
+            {
+                Debug.LogError("SignInWithCredentialAsync was canceled.");
+                uIMainManager.OnSignUpFailed(1);
+                LogginFailed();
+                return;
+            }
+            if (task.IsFaulted)
+            {
+                Debug.LogError("SignInWithCredentialAsync encountered an error: " + task.Exception);
+                uIMainManager.OnSignUpFailed(1);
+                LogginFailed();
+                return;
+            }
+
+            FirebaseUser = task.Result;
+
+            Debug.LogFormat("Firebase user created successfullyyyyyyyyy: {0} ({1})",
+                FirebaseUser.DisplayName, FirebaseUser.UserId);
+
+            CheckUser(FirebaseUser.UserId);
+        });
     }
 
     public void UpdateUserProfile(Firebase.Auth.FirebaseUser _user,string _name, string _Url)
@@ -348,6 +490,9 @@ public class FirebaseManager : MonoBehaviour
 
     public void SignOutFirebase()
     {
+        SignInGoogleAutomatically = false;
+        SignInAutomatically = false;
+
         PlayerPrefs.DeleteAll();
 
         if(FirebaseAuth!=null)
@@ -372,6 +517,46 @@ public class FirebaseManager : MonoBehaviour
         //var JsonString = JsonConvert.SerializeObject(_data);
         //PlayerPrefs.SetString("PlayerData", JsonString);
     }
+    public void CheckUser(string _id)
+    {
+        CheckRef();
+        DocumentReference docRef = DatabaseInstance.Collection("users").Document(_id);
+        docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            var snapshot = task.Result;
+
+            if (snapshot.Exists)
+            {
+                Debug.Log("user exists loggin in!");
+                OnSuccessLogin();
+
+                if(IsGoogleSignIn)
+                    GameData.SetGoogleData();
+                else
+                    GameData.SetFBData();
+            }
+            else
+            {
+                Debug.Log("user does not exists, creating new one");
+
+                string _email = FirebaseUser.Email;
+                if (_email == "")
+                    _email = FirebaseUser.UserId + "@gmail.com";
+                
+                UpdateUserProfile(FirebaseUser, FirebaseUser.DisplayName, "https://example.com/jane-q-user/profile.jpg");
+                SetProfileData(FirebaseUser.DisplayName, FirebaseUser.UserId, "090084241", _email, 0, 0);
+                AddFireStoreData(userProfile);
+                GetQuestionsData(false);
+                uIMainManager.OnSignUpSuccess();
+
+                if (IsGoogleSignIn)
+                    GameData.SetGoogleData();
+                else
+                    GameData.SetFBData();
+            }
+        });
+    }
+
 
     public void GetFireStoreData(bool isLogin=false)
     {
@@ -421,6 +606,7 @@ public class FirebaseManager : MonoBehaviour
         Query QuestionCollection = DatabaseInstance.Collection("fl_content");
         QuestionCollection.GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
+            Debug.Log(task.Result);
             QuerySnapshot AllQuestions = task.Result;
             foreach (DocumentSnapshot documentSnapshot in AllQuestions.Documents)
             {
@@ -450,4 +636,33 @@ public class FirebaseManager : MonoBehaviour
 
 
     #endregion
+
+    #region Facebbok
+    void OnFacebookLogin()
+    {
+        IsGoogleSignIn = false;
+        //var request = new LoginWithFacebookRequest { CreateAccount = true, AccessToken = AccessToken.CurrentAccessToken.TokenString };
+        // PlayFabClientAPI.LoginWithFacebook(request, OnLoginSuccess, OnLoginFailure);
+        Debug.Log("login success: "+ FBManager.Instance.AccessTokenFB);
+        Credential _credential = Firebase.Auth.FacebookAuthProvider.GetCredential(FBManager.Instance.AccessTokenFB);
+        SignInWithCredentials(_credential);
+    }
+
+    void OnFacebookLoginFail()
+    {
+        //if (FBLoginCallback != null)
+        //    FBLoginCallback(false, "fail");
+        //if(FBLoginCallback != null)
+        //{
+        uIMainManager.OnSignUpFailed(1);
+        Debug.Log("failure");
+        CheckRef();
+        PlayerPrefs.DeleteAll();
+        uIMainManager.ToggleLoadingScreen(false);
+        uIMainManager.NextScreen(0);
+        //}
+    }
+
+    #endregion
+
 }

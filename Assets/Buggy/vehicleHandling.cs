@@ -20,6 +20,7 @@ public class vehicleHandling : MonoBehaviour {
     public float turboDuration = 0.5f;
     public float turboBurning = 2;
     public float turboStrength = 2.25f;
+    public float totalNitroTime = 0.09f;
 
     [Header("Respawn Parameters")]
     [Tooltip("Position to respawn vehicle")]
@@ -647,7 +648,7 @@ public class vehicleHandling : MonoBehaviour {
             while (!PlayerManagerScript.instance.isEmpty)
             {
                 yield return new WaitForSeconds(0.1f);
-                PlayerManagerScript.instance.burn(0.17f);
+                PlayerManagerScript.instance.burn(totalNitroTime);//0.17f
             }
 
             _turbo = 1;
@@ -665,12 +666,14 @@ public class vehicleHandling : MonoBehaviour {
     /// </summary>
     public void StartTurbo()
     {
+        Debug.Log("Instance empty:" + PlayerManagerScript.instance.isEmpty + " " + "Turbo locked: "+ turboLocked);
+
         if (PlayerManagerScript.instance.isEmpty || turboLocked)
             return;
         // transform.Find("nitro").gameObject.SetActive(true);
         nitroObj.SetActive(true);
         //PlayerManagerScript.instance.nitroImage.SetActive (true);
-        //		PlayerManagerScript.instance.blurEffect.enabled = true;
+        //PlayerManagerScript.instance.blurEffect.enabled = true;
         PlayerManagerScript.instance._RaceManager.GameCamereComponent.IsShakeCameraOnNitro = true;
         PlayerManagerScript.instance._animController.PlayBoostAniamtions();
         StartCoroutine("Turbo");

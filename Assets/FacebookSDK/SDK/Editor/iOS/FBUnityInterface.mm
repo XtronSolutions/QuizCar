@@ -105,11 +105,6 @@
   [FBUnityUtility sendMessageToUnity:FBUnityMessageName_OnInitComplete userData:userData requestId:0];
 }
 
-- (void)IOSFBEnableProfileUpdatesOnAccessTokenChange:(BOOL)enable
-{
-  [FBSDKProfile enableUpdatesOnAccessTokenChange:enable];
-}
-
 - (void)logInWithPublishPermissions:(int) requestId
                              scope:(const char *)scope
 {
@@ -164,7 +159,7 @@ isPublishPermLogin:(BOOL)isPublishPermLogin
   if(scope && strlen(scope) > 0) {
     permissions = [scopeStr componentsSeparatedByString:@","];
   }
-  
+
   NSString *trackingStr = [FBUnityUtility stringFromCString:tracking];
   NSString *nonceStr = nil;
   if (nonce) {
@@ -176,7 +171,7 @@ isPublishPermLogin:(BOOL)isPublishPermLogin
   } else {
     config = [[FBSDKLoginConfiguration alloc] initWithPermissions:permissions tracking:([trackingStr isEqualToString:@"enabled"] ? FBSDKLoginTrackingEnabled : FBSDKLoginTrackingLimited)];
   }
-  
+
   void (^loginHandler)(FBSDKLoginManagerLoginResult *,NSError *) = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
     if (error) {
       [FBUnityUtility sendErrorToUnity:FBUnityMessageName_OnLoginComplete error:error requestId:requestId];
@@ -185,14 +180,14 @@ isPublishPermLogin:(BOOL)isPublishPermLogin
       [FBUnityUtility sendCancelToUnity:FBUnityMessageName_OnLoginComplete requestId:requestId];
       return;
     }
-    
+
     if ([self tryCompleteLoginWithRequestId:requestId]) {
       return;
     } else {
       [FBUnityUtility sendErrorToUnity:FBUnityMessageName_OnLoginComplete errorMessage:@"Unknown login error" requestId:requestId];
     }
   };
-  
+
   FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
   [login logInFromViewController:nil configuration:config completion:loginHandler];
 }
@@ -414,6 +409,11 @@ extern "C" {
     [FBSDKAppEvents sendEventBindingsToUnity];
   }
 
+  void IOSFBEnableProfileUpdatesOnAccessTokenChange(bool enable)
+  {
+    [FBSDKProfile enableUpdatesOnAccessTokenChange:enable];
+  }
+
   void IOSFBLoginWithTrackingPreference(int requestId, const char *scope, const char *tracking, const char *nonce)
   {
     [[FBUnityInterface sharedInstance] loginWithTrackingPreference:requestId scope:scope
@@ -504,6 +504,21 @@ extern "C" {
         data[@"ageMax"] = profile.ageRange.max.stringValue;
       }
     }
+
+    if (profile.hometown) {
+      data[@"hometown_id"] = profile.hometown.id;
+      data[@"hometown_name"] = profile.hometown.name;
+    }
+
+    if (profile.location) {
+      data[@"location_id"] = profile.location.id;
+      data[@"location_name"] = profile.location.name;
+    }
+
+    if (profile.gender) {
+      data[@"gender"] = profile.gender;
+    }
+
     try {
       NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
       if (jsonData) {
@@ -756,10 +771,7 @@ extern "C" {
   void IOSFBUpdateUserProperties(int numParams,
                                  const char **paramKeys,
                                  const char **paramVals)
-  {
-    NSDictionary *params =  [FBUnityUtility dictionaryFromKeys:paramKeys values:paramVals length:numParams];
-    [FBSDKAppEvents updateUserProperties:params handler:NULL];
-  }
+  { }
 
   void IOSFBFetchDeferredAppLink(int requestId)
   {

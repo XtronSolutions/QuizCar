@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "242521200867",
-    "project_id": "educationalgame-ff43f",
-    "storage_bucket": "educationalgame-ff43f.appspot.com"
+    "project_number": "562499227773",
+    "project_id": "quiz-racing-mania",
+    "storage_bucket": "quiz-racing-mania.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:242521200867:android:a4a132d112ba4b1b3b4dd6",
+        "mobilesdk_app_id": "1:562499227773:android:8c7401ff06d5059d1da114",
         "android_client_info": {
-          "package_name": "com.game.edugame"
+          "package_name": "com.game.quizracingmania"
         }
       },
       "oauth_client": [
         {
-          "client_id": "242521200867-tdonq3vc2hao3dtrq7kgi6b63qa0o27j.apps.googleusercontent.com",
+          "client_id": "562499227773-qu1kc39mn99s9ltjo8pmfkgq0cqeivsc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDAcfTizj135bLxhBjC6O7Qq12eXkjB4XA"
+          "current_key": "AIzaSyAqVIPU0XWjUR5kgRt7n_NyVJvXpv4Ojss"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "242521200867-tdonq3vc2hao3dtrq7kgi6b63qa0o27j.apps.googleusercontent.com",
+              "client_id": "562499227773-qu1kc39mn99s9ltjo8pmfkgq0cqeivsc.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "562499227773-k7ap9o7nm8hm3927me9plj53q6f6eduf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.game.quizracingmania"
+              }
             }
           ]
         }

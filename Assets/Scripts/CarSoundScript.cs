@@ -7,7 +7,7 @@ public class CarSoundScript : MonoBehaviour
 	private vehicleHandling carHandling;
 	private AudioSource audioSource;
 	private float factor = 0, p0, p1;
-	private float maxSpeed = 50;
+	public float maxSpeed = 20;
 	private Racer_Register racerReg;
 	private bool finishCheck = true;
 	private bool noSound = false;

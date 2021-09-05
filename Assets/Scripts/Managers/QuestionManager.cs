@@ -16,8 +16,11 @@ public class QuestionManager : MonoBehaviour
     public TextMeshProUGUI TextFeedback;
     public AudioClip[] Responses; //0 is wrong, 1 is corect
     AudioSource Source;
+    private readonly float TimeDelay = 1.5f;
+    private readonly float CoroutineDelay = 2.0f;
     bool IsCorrect = false;
     bool IsPlaying = false;
+    bool StartPowerAction = false;
     AudioClip myClip;
 
     [HideInInspector]
@@ -50,6 +53,22 @@ public class QuestionManager : MonoBehaviour
         Source.Play();
     }
 
+    public IEnumerator PerformPowerUpAction(float sec, bool _isCorrect)
+    {
+        Debug.Log(_isCorrect+" "+ sec);
+        yield return new WaitUntil(()=> StartPowerAction==true);
+        Debug.Log("here");
+        if (_isCorrect)
+        {
+            PowerInstance.NitroPressed();
+        }else
+        {
+            PowerInstance.BoulderActive();
+        }
+
+        Destroy(this.gameObject);
+    }
+
     public void CorrectAnswer()
     {
         TextFeedback.text = "CORRECT";
@@ -68,34 +87,27 @@ public class QuestionManager : MonoBehaviour
 
     public void OnAnswerButtonPressed_True()
     {
-        if(IsCorrect)
-        {
-            //win
+        if(IsCorrect)//win
             CorrectAnswer();
-        }
         else
-        {
-            //lose
-            WrongAsnwer();
-        }
+            WrongAsnwer(); //lose
 
-        Invoke("DestoryAndContinue", 1.5f);
+        StartPowerAction = false;
+        Invoke("DestoryAndContinue", TimeDelay);
+        StartCoroutine(PerformPowerUpAction(CoroutineDelay, IsCorrect));
+        
     }
 
     public void OnAnswerButtonPressed_False()
     {
         if(IsCorrect)
-        {
-            //lose
-            WrongAsnwer();
-        }
+            WrongAsnwer();//lose
         else
-        {
-            //win
-            CorrectAnswer();
-        }
+            CorrectAnswer();//win
 
-        Invoke("DestoryAndContinue", 1.5f);
+        StartPowerAction = false;
+        Invoke("DestoryAndContinue", TimeDelay);
+        StartCoroutine(PerformPowerUpAction(CoroutineDelay, !IsCorrect));
     }
 
     public void DestoryAndContinue()
@@ -106,7 +118,7 @@ public class QuestionManager : MonoBehaviour
         PowerInstance.QuestionSelected = false;
         Time.timeScale = 1;
         RemoveEvents();
-        Destroy(this.gameObject);
+        StartPowerAction = true;
     }
 
     public void ResetObjects()

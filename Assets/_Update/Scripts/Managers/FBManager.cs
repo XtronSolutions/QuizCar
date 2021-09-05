@@ -4,24 +4,40 @@ using UnityEngine;
 using Facebook.Unity;
 using System;
 using UnityEngine.UI;
+using Newtonsoft.Json;
+
+public class FBData {
+        public string permissions { get; set; }
+        public string expiration_timestamp { get; set; }
+        public string access_token { get; set; }
+        public string user_id { get; set; }
+        public string last_refresh { get; set; }
+        public string graph_domain { get; set; }
+        public List<string> granted_permissions { get; set; }
+        public List<object> declined_permissions { get; set; }
+        public string callback_id { get; set; }
+}
+
 public class FBManager : SingeltonBase<FBManager> {
     public delegate void callback();
     public callback OnFacebookLoginSuccessful;
     public callback OnFacebookInitialized;
     public callback OnFacebookLoginFail;
+     [HideInInspector]
     public string playerName;
+     [HideInInspector]
     public string facebookID;
+     [HideInInspector]
     public Texture2D profileImage;
     public static bool IsLoggedIn;
- 
     public List<Friend> friendsList = new List<Friend>();
+    [HideInInspector]
+    public string AccessTokenFB;
+    [HideInInspector]
+    public bool InitializeDone=false;
 
-  //  public GameObject startingLoadingText;
-    // Start is called before the first frame update
     void Start()
     {
-       // profileImage = new Texture2D(200, 200);
-
         FB.Init(this.OnInitComplete, this.OnHideUnity);
     }
 
@@ -38,27 +54,27 @@ public class FBManager : SingeltonBase<FBManager> {
         }
 
         FB.ActivateApp();
-
+        //InitializeDone=FB.IsInitialized;
         if (FB.IsLoggedIn)
         {
 
-            Debug.Log("Login");
-            if (OnFacebookInitialized != null)
-            {
-                OnFacebookInitialized();
-            }
-            if (OnFacebookLoginSuccessful != null)
-                OnFacebookLoginSuccessful();
+            Debug.Log("Login alrerady doine");
+            // if (OnFacebookInitialized != null)
+            // {
+            //     OnFacebookInitialized();
+            // }
+            // if (OnFacebookLoginSuccessful != null)
+            //     OnFacebookLoginSuccessful();
 
-            GetUserFacebookDetail();
+           // GetUserFacebookDetail();
 
-            FetchFriendsList();
-            GameObject.FindObjectOfType<MenuManager>().OpenMainMenuScreen();
+            //FetchFriendsList();
+            //GameObject.FindObjectOfType<MenuManager>().OpenMainMenuScreen();
           //  startingLoadingText.SetActive(false);
         }
         else
         {
-            PlayfabManager.Instance.CheckLogin(CheckLogin);
+            //PlayfabManager.Instance.CheckLogin(CheckLogin);
         }
         
     }
@@ -73,24 +89,32 @@ public class FBManager : SingeltonBase<FBManager> {
     }
     private void OnHideUnity(bool isGameShown)
     {
-        // Debug.Log("Is game shown: " + isGameShown);
+        Debug.Log("Is game shown: " + isGameShown);
     }
-    // Update is called once per frame
+
     void Update()
     {
         IsLoggedIn = FB.IsLoggedIn;
+        InitializeDone=FB.IsInitialized;
     }
 
+public IEnumerator LoginWithDelay()
+{
+    yield return new WaitUntil(()=> InitializeDone==true);
+    if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            Debug.LogError("No internet.");
+            yield return null;
+        }
+    else
+    {
+        Debug.Log("Connecting...");
+        FB.LogInWithReadPermissions(new List<string>() { "public_profile" }, this.HandleResult);
+    }
+}
     public void Login()
     {
-
-        if (Application.internetReachability == NetworkReachability.NotReachable)
-        {
-            Debug.Log("No internet.");
-            return;
-        }
-        Debug.Log("Connecting...");
-        FB.LogInWithReadPermissions(new List<string>() { "public_profile", "user_friends" }, this.HandleResult);
+        StartCoroutine(LoginWithDelay());
     }
     public void Logout()
     {
@@ -128,20 +152,25 @@ public class FBManager : SingeltonBase<FBManager> {
                 OnFacebookLoginFail();
         }
         else if (!string.IsNullOrEmpty(result.RawResult))
-        {
+        { 
             Status = "Success - Check log for details";
             LastResponse = "Success Response:\n" + result.RawResult;
+            Debug.Log(result.RawResult);
 
+            FBData _data = JsonConvert.DeserializeObject<FBData>(result.RawResult);
+            Debug.Log(_data.ToString());
+            AccessTokenFB = _data.access_token;
+            Debug.Log(AccessTokenFB);
             if (OnFacebookLoginSuccessful != null)
                 OnFacebookLoginSuccessful();
 
             GetUserFacebookDetail();
 
-            FetchFriendsList();
+            //FetchFriendsList();
 
 
-            PlayerPrefs.SetString("login", "true");
-            PlayerPrefs.Save();
+            //PlayerPrefs.SetString("login", "true");
+            //PlayerPrefs.Save();
         }
         else
         {
@@ -163,10 +192,11 @@ public class FBManager : SingeltonBase<FBManager> {
             {
                 facebookID = "" + httpResult.ResultDictionary["id"];
                 playerName = "" + httpResult.ResultDictionary["name"];
-                PlayfabManager.PlayerID = facebookID;
-                PlayfabManager.PlayerGameName = playerName;
-                PlayfabManager.PlayerName = playerName;
-                GetFacebookUserPictureFromUrl("me", profileImage);
+                Debug.Log(httpResult);
+                //PlayfabManager.PlayerID = facebookID;
+                //PlayfabManager.PlayerGameName = playerName;
+                //PlayfabManager.PlayerName = playerName;
+                //GetFacebookUserPictureFromUrl("me", profileImage);
             }
             else
             {

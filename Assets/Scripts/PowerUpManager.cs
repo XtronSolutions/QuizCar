@@ -80,17 +80,23 @@ public class PowerUpManager : MonoBehaviour
 		}
 	}
 
+    public void BoulderActive()
+    {
+        PlayerManagerScript.instance._vehicleHandling.IceCube.SetActive(true);
+    }
 
 	public void NitroPressed()
 	{
-		PlayerManagerScript.instance.addNitro (1);
-		Nitro ();
+        Debug.Log("Turbo pressed called");
+		PlayerManagerScript.instance.addNitro (3);
+        Nitro ();
 //		powerUps [0].GetComponent<Button>().interactable = false;
 //		powerUps [0].GetComponent<Image> ().color = new Color (1, 1, 1, 0.5f);
 	}
 
 	private void Nitro()
-	{  
+	{
+        Debug.Log("Turbo locked: " + PlayerManagerScript.instance._vehicleHandling.turboLocked);
 		if (PlayerManagerScript.instance._vehicleHandling.turboLocked) 
 		{
 		}

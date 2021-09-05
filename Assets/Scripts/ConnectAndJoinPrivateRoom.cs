@@ -56,6 +56,7 @@ namespace Photon.Pun.UtilityScripts
 		public GameObject InvitePanel;
 		public AudioSource alertOnConnect;
 		public GameObject somethingWentWrongPanel;
+		public Text[] PlayerCount;
 
 		private int connectedPlayers = 0;
 		private bool isConnecting = false;
@@ -76,26 +77,51 @@ namespace Photon.Pun.UtilityScripts
 		}
 
 		public void Update(){
+			if(PlayerCount[0]!=null)
+			{
+				if(PhotonNetwork.CurrentRoom!=null)
+					PlayerCount[0].text=PhotonNetwork.CurrentRoom.PlayerCount.ToString();
+				else
+					PlayerCount[0].text="0";
+			}
 			
+			if(PlayerCount[1]!=null)
+			{
+				if(PhotonNetwork.CurrentRoom!=null)
+					PlayerCount[1].text=PhotonNetwork.CurrentRoom.PlayerCount.ToString();
+				else
+					PlayerCount[1].text="0";
+			}
 		}
 
 		public void ConnectNow()
 		{
-			Debug.Log("ConnectAndJoinRandom.ConnectNow() will now call: PhotonNetwork.ConnectUsingSettings().");
-			PhotonNetwork.ConnectUsingSettings();
-			PhotonNetwork.GameVersion = this.Version + "." + SceneManagerHelper.ActiveSceneBuildIndex;
+			if(PhotonNetwork.IsConnected)
+			{
+				ConnectionMaster();
+			}else
+			{
+				Debug.Log("ConnectAndJoinRandom.ConnectNow() will now call: PhotonNetwork.ConnectUsingSettings().");
+				PhotonNetwork.ConnectUsingSettings();
+				PhotonNetwork.GameVersion = this.Version + "." + SceneManagerHelper.ActiveSceneBuildIndex;
+			}
 		}
 
 
 		// below, we implement some callbacks of the Photon Realtime API.
 		// Being a MonoBehaviourPunCallbacks means, we can override the few methods which are needed here.
 
-
-		public override void OnConnectedToMaster()
+		public void ConnectionMaster()
 		{
 			Debug.Log("OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room. Calling: PhotonNetwork.JoinRandomRoom();");
 			PhotonNetwork.AutomaticallySyncScene = true;
-			PhotonNetwork.LocalPlayer.NickName = PlayfabManager.PlayerName;
+			
+			string name="player";
+			if(FirebaseManager.Instance!=null)
+				name=FirebaseManager.Instance.userProfile.Name;
+
+
+			PhotonNetwork.LocalPlayer.NickName = name;
 			if (Constants.joinCode == "") {
 				var roomCode = Random.Range (100000, 999999);
 
@@ -105,13 +131,19 @@ namespace Photon.Pun.UtilityScripts
 
                 PhotonNetwork.CreateRoom (roomCode.ToString (), new RoomOptions () { MaxPlayers = 6, PublishUserId = true, CustomRoomProperties = customProperties }, null);
 				shareCodeText.text = roomCode.ToString ();
+				Debug.Log(roomCode.ToString ());
 				isConnecting = true;
 			} else {
+				Debug.LogError("Join room with code: "+Constants.joinCode);
 				PhotonNetwork.JoinRoom (Constants.joinCode);
 				shareCodeText.text = Constants.joinCode.ToString ();
 				isConnecting = false;
 			}
+		}
 
+		public override void OnConnectedToMaster()
+		{
+			ConnectionMaster();
 		}
 
 		public override void OnJoinedLobby()
@@ -132,10 +164,12 @@ namespace Photon.Pun.UtilityScripts
                 PhotonNetwork.CreateRoom (roomCode.ToString (), new RoomOptions () { MaxPlayers = 6, PublishUserId = true, CustomRoomProperties = customProperties }, null);
 				shareCodeText.text = roomCode.ToString ();
 			} else {
-				connectingText.SetActive (false);
-				loadingScreen.SetActive (false);
+				//connectingText.SetActive (false);
+				//loadingScreen.SetActive (false);
 				invalidCode.SetActive (true);
-				enterCodeButton.SetActive (true);
+				//enterCodeButton.SetActive (true);
+				ConnectionManager.Instance.LoadingScreen.SetActive(false);
+				ConnectionManager.Instance.ResetJoinData();
 			}
 		}
 
@@ -157,10 +191,19 @@ namespace Photon.Pun.UtilityScripts
             GameData.selectedEnvironment = int.Parse(PhotonNetwork.CurrentRoom.CustomProperties["m"].ToString());
             Debug.Log("OnJoinedRoom " + GameData.selectedEnvironment);
 
-            connectingText.SetActive (false);
-			inviteCodeText.SetActive (true);
-			shareCodeText.gameObject.SetActive (true);
-			shareButton.SetActive (true);
+            //connectingText.SetActive (false);
+			//inviteCodeText.SetActive (true);
+			
+			if(GameData.isCreateRoom)
+			{
+				shareCodeText.gameObject.SetActive (true);
+				shareButton.SetActive (true);
+			}
+			else
+			{
+				ConnectionManager.Instance.JoinData.CodeObject.SetActive(false);
+				ConnectionManager.Instance.JoinData.ConnectingText.gameObject.SetActive(true);
+			}
 
 			connectedPlayers++;
 			Race_Manager.player = playerCar;
@@ -169,6 +212,10 @@ namespace Photon.Pun.UtilityScripts
 			Race_Manager.totalRacers = connectedPlayers;
 
 			loadingScreen.SetActive (false);
+
+			if(ConnectionManager.Instance)
+				ConnectionManager.Instance.LoadingScreen.SetActive(false);
+
 			alertOnConnect.Play ();
 		}
 
@@ -179,6 +226,7 @@ namespace Photon.Pun.UtilityScripts
 			if (connectedPlayers >= 2) {
 				if (PhotonNetwork.IsMasterClient) {
 					startRaceButton.SetActive (true);
+					startRaceButton.GetComponent<Button>().interactable=true;
 				}
 				Race_Manager.totalRacers = connectedPlayers;
 
@@ -214,6 +262,7 @@ namespace Photon.Pun.UtilityScripts
 
 			if (PhotonNetwork.IsMasterClient && connectedPlayers >= 2) {
 				startRaceButton.SetActive (true);
+				startRaceButton.GetComponent<Button>().interactable=true;
 			}
 		}
 
@@ -225,7 +274,8 @@ namespace Photon.Pun.UtilityScripts
 			connectedPlayers--;
 
 			if (connectedPlayers < 2 && PhotonNetwork.IsMasterClient) {
-				startRaceButton.SetActive (false);
+				//startRaceButton.SetActive (false);
+				startRaceButton.GetComponent<Button>().interactable=false;
 			}
 
 			Debug.Log("OnPlayerLeftRoom() called by PUN. Connected players " + connectedPlayers + " Spawn Point " + otherPlayer.GetScore());
@@ -335,12 +385,12 @@ namespace Photon.Pun.UtilityScripts
                     if (GameData.trackNo < 3)
                     {
                         GameData.isDay = true;
-                        PhotonNetwork.LoadLevel("ForestBeachEnvLoader");
+                        PhotonNetwork.LoadLevel("Env2");//ForestBeachEnvLoader
                     }
                     else
                     {
                         GameData.isDay = false;
-                        PhotonNetwork.LoadLevel("ForestBeachEnvNightNew");
+                        PhotonNetwork.LoadLevel("Env2");//ForestBeachEnvLoader
                     }
                 }
                 else
@@ -350,12 +400,12 @@ namespace Photon.Pun.UtilityScripts
                     if (GameData.trackNo < 3)
                     {
                         GameData.isDay = true;
-                        PhotonNetwork.LoadLevel("desert_01");
+                        PhotonNetwork.LoadLevel("Env2");//desert_01
                     }
                     else
                     {
                         GameData.isDay = false;
-                        PhotonNetwork.LoadLevel("desert_02night");
+                        PhotonNetwork.LoadLevel("Env2");//desert_02night
                     }
                 }
             }

@@ -205,6 +205,9 @@ namespace RacingGameKit
 		public String RacerID;
 		private void Start()
 		{
+			if(FirebaseManager.Instance!=null)
+				RacerName=FirebaseManager.Instance.userProfile.Name;
+				
 			if (!this.enabled) return;
 			if (gameObject.tag == "Player") IsPlayer = true;
 			GamerDistanceChecker = transform.Find("_DistancePoint");

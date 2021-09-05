@@ -19,7 +19,6 @@ public class FinishPointHandler : MonoBehaviour {
     public GameObject black, msg;
     // Use this for initialization
     void Start () {
-       
             restartBtn.SetActive(!Constants.isMultiplayerSelected);
 	}
 	

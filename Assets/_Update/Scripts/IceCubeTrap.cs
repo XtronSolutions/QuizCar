@@ -7,7 +7,8 @@ public class IceCubeTrap : MonoBehaviour {
     
 	// Use this for initialization
 	void OnEnable () {
-        Invoke("DisableIt", 8);
+        this.transform.root.GetComponent<Rigidbody>().mass = 2000;
+        Invoke("DisableIt", 7);
 	}
 	
 	// Update is called once per frame

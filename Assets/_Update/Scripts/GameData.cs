@@ -28,12 +28,16 @@ public class PlayerDataSave
     public static bool isSound = true;
     public static bool isMusic = true;
     public static bool isTutorial = false;
-
+    public static bool isQuickMatch=false;
+    public static bool isCreateRoom=false;
+    
     const string CONTROLSKEY = "controls";
     const string SOUNDKEY = "sound";
     const string MUSICKEY = "music";
     public const string TUTORIALKEY = "tutorial";
     public static string PlayerDataKey = "PlayerData";
+    public static string PlayerGoogleDataKey = "GoogleData";
+    public static string PlayerFBDataKey = "fBData";
     void Start()
     {
 
@@ -58,6 +62,26 @@ public class PlayerDataSave
     public static string GetSavePlayerData()
     {
         return PlayerPrefs.GetString(GameData.PlayerDataKey,"");
+    }
+
+    public static void SetGoogleData()
+    {
+        PlayerPrefs.SetString(GameData.PlayerGoogleDataKey, "stored");
+    }
+
+    public static string GetGoogleData()
+    {
+        return PlayerPrefs.GetString(GameData.PlayerGoogleDataKey, "");
+    }
+
+    public static void SetFBData()
+    {
+        PlayerPrefs.SetString(GameData.PlayerFBDataKey, "stored");
+    }
+
+    public static string GetFBData()
+    {
+        return PlayerPrefs.GetString(GameData.PlayerFBDataKey, "");
     }
 
     public static void PushData()

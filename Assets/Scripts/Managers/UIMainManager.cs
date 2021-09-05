@@ -61,6 +61,17 @@ public class MessageScreen
     public TextMeshProUGUI WrittenText;
 }
 
+[System.Serializable]
+public class MultiplayerSelectionScreen
+{
+    public Button QuickMatch;
+    public Button FriendMatch;
+    public Button BackButton;
+    public Button CreateMatch;
+    public Button JoinMatch;
+    public TextMeshProUGUI Name;
+}
+
 
 public class UIMainManager : MonoBehaviour
 {
@@ -84,6 +95,10 @@ public class UIMainManager : MonoBehaviour
     [Space]
     [Tooltip("Reference of all objects related to message Screen")]
     public MessageScreen messageScreen;
+
+    [Space]
+    [Tooltip("Reference of all objects related to multiplayer selection screen")]
+    public MultiplayerSelectionScreen SelectionScreen;
 
     [Space]
     [Tooltip("Reference of all objects related to temp Screen")]
@@ -116,6 +131,7 @@ public class UIMainManager : MonoBehaviour
         //AssignScreenValues();
 
         CheckFirebaseRef();
+        SelectionScreenListeners();
         MainScreenListeners();
         LoginResetVariables();
         LoginListeners();
@@ -159,6 +175,7 @@ public class UIMainManager : MonoBehaviour
             tempScreen.QuestionAnswered.text = "Question Answered : " + _data.Data.QuestionAnswered.ToString();
 
             tempScreen.SignOutButton.onClick.AddListener(OnSignOutClicked);
+            SelectionScreen.Name.text=_data.Name.ToString();
         }
     }
 
@@ -180,9 +197,11 @@ public class UIMainManager : MonoBehaviour
     #region MainMenu Screen
     public void MainScreenListeners()
     {
-        //MainScreenData.PlayAsGuest.onClick.AddListener(OnSignInClicked);
         MainScreenData.SignUpButton.onClick.AddListener(OnSignUpClicked_MainScreen);
         MainScreenData.SignInButton.onClick.AddListener(OnSignInClicked_MainScreen);
+        MainScreenData.GoogleLoginButton.onClick.AddListener(OnGoogleSignInClicked_MainScreen);
+        MainScreenData.FacebookLoginButton.onClick.AddListener(OnFacebookSignInClicked_MainScreen);
+        MainScreenData.PlayAsGuest.onClick.AddListener(OnGuestSignInClicked_MainScreen);
     }
 
     public void OnSignInClicked_MainScreen()
@@ -190,6 +209,34 @@ public class UIMainManager : MonoBehaviour
         LoginResetVariables();
         ToggleLoadingScreen(false);
         NextScreen(1);
+    }
+
+    public void OnGuestSignInClicked_MainScreen()
+    {
+        LoginResetVariables();
+        ToggleLoadingScreen(true);
+        CheckFirebaseRef();
+        firebaseManager.GuestSignIn();
+    }
+    public void OnFacebookSignInClicked_MainScreen()
+    {
+        LoginResetVariables();
+
+        //GameData.SetSavePlayerData(Email, Password);
+        ToggleLoadingScreen(true);
+        CheckFirebaseRef();
+        FBManager.Instance.Login();
+        //firebaseManager.SignInWithGoogle(false);
+    }
+
+    public void OnGoogleSignInClicked_MainScreen()
+    {
+        LoginResetVariables();
+
+        //GameData.SetSavePlayerData(Email, Password);
+        ToggleLoadingScreen(true);
+        CheckFirebaseRef();
+        firebaseManager.SignInWithGoogle(false);
     }
 
     public void OnSignUpClicked_MainScreen()
@@ -269,6 +316,8 @@ public class UIMainManager : MonoBehaviour
             ShowToast("Process cancelled by user.", 2f);
         else if (_code == 1)
             ShowToast("Invalid email or password, please try again.", 2f);
+        else if (_code == 2)
+            ShowToast("Google sign in was cancelled.", 2f);
     }
 
     public void OnSignUpClicked()
@@ -396,6 +445,8 @@ public class UIMainManager : MonoBehaviour
             ShowToast("Process cancelled by user.", 2f);
         else if (_code == 1)
             ShowToast("Something went wrong, please try again.", 2f);
+        else if (_code==2)
+            ShowToast("Google sign in was cancelled.", 2f);
     }
 
     public void OnSignUpBackClicked_Register()
@@ -445,6 +496,7 @@ public class UIMainManager : MonoBehaviour
         else
             ScreenCounter = forceIndex;
 
+        Debug.Log("Changing screen to : "+ScreenCounter);
         ChangeScreen(ScreenCounter);
     }
 
@@ -522,6 +574,46 @@ public class UIMainManager : MonoBehaviour
 
     #endregion
 
+    #region Multiplayer Selection Screen
+    public void SelectionScreenListeners()
+    {
+        SelectionScreen.BackButton.onClick.AddListener(OnBackClicked_SelectionScreen);
+        SelectionScreen.QuickMatch.onClick.AddListener(OnQuickMatchClicked_SelectionScreen);
+        //SelectionScreen.FriendMatch.onClick.AddListener(OnFriendMatchClicked_SelectionScreen);
+
+        SelectionScreen.CreateMatch.onClick.AddListener(OnFriendMatchCreateClicked_SelectionScreen);
+        SelectionScreen.JoinMatch.onClick.AddListener(OnFriendMatchJoinClicked_SelectionScreen);
+    }
+
+    public void OnBackClicked_SelectionScreen()
+    {
+       // Debug.Log("Back clicked");
+        PreviousScreen(-1);
+    }
+
+    public void OnQuickMatchClicked_SelectionScreen()
+    {
+        GameData.isQuickMatch=true;
+        RaceMultiplayer();
+    }
+
+    public void OnFriendMatchCreateClicked_SelectionScreen()
+    {
+        GameData.isQuickMatch=false;
+        GameData.isCreateRoom=true;
+        RaceMultiplayer();
+    }
+
+    public void OnFriendMatchJoinClicked_SelectionScreen()
+    {
+        GameData.isQuickMatch=false;
+        GameData.isCreateRoom=false;
+        RaceMultiplayer();
+    }
+
+
+    #endregion
+    
     private void OnDisable()
     {
         MainScreenData.SignUpButton.onClick.RemoveAllListeners();
@@ -542,5 +634,14 @@ public class UIMainManager : MonoBehaviour
         RegisterScreenData.BackButton.onClick.RemoveAllListeners();
 
         tempScreen.SignOutButton.onClick.RemoveAllListeners();
+        MainScreenData.GoogleLoginButton.onClick.RemoveAllListeners();
+        MainScreenData.FacebookLoginButton.onClick.RemoveAllListeners();
+        MainScreenData.PlayAsGuest.onClick.RemoveAllListeners();
+
+        SelectionScreen.BackButton.onClick.RemoveAllListeners();
+        SelectionScreen.QuickMatch.onClick.RemoveAllListeners();
+
+        SelectionScreen.CreateMatch.onClick.RemoveAllListeners();
+        SelectionScreen.JoinMatch.onClick.RemoveAllListeners();
     }
 }

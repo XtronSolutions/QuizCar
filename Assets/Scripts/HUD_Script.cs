@@ -175,7 +175,15 @@ public class HUD_Script : MonoBehaviour
 
         if (racerDetail == null) {
 			racerDetail = racerReg.RacerDetail;
-			racerDetail.avatarholder = progressBar2.targetGraphic.GetComponent<Image> ();
+            try
+            {
+                racerDetail.avatarholder = progressBar2.targetGraphic.GetComponent<Image>();
+            }
+            catch (System.Exception ex)
+            {
+                Debug.Log(ex);
+            }
+		
 		}
 
 

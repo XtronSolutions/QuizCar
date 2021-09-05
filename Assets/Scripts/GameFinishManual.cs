@@ -79,8 +79,8 @@ void ShowUI(){
 		
 		CalculatePosition ();
 		ShowPlayerPosition ();
-            CalculateScore();
-            Invoke("ShowTutorial", 2);
+        CalculateScore();
+        //Invoke("ShowTutorial", 2);
     }
 			
 }

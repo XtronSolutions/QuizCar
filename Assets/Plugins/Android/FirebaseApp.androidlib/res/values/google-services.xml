@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id" xmlns:tools="http://schemas.android.com/tools">
-  <string name="gcm_defaultSenderId" translatable="false">242521200867</string>
-  <string name="google_storage_bucket" translatable="false">educationalgame-ff43f.appspot.com</string>
-  <string name="project_id" translatable="false">educationalgame-ff43f</string>
-  <string name="google_api_key" translatable="false">AIzaSyDAcfTizj135bLxhBjC6O7Qq12eXkjB4XA</string>
-  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDAcfTizj135bLxhBjC6O7Qq12eXkjB4XA</string>
-  <string name="google_app_id" translatable="false">1:242521200867:android:a4a132d112ba4b1b3b4dd6</string>
-  <string name="default_web_client_id" translatable="false">242521200867-tdonq3vc2hao3dtrq7kgi6b63qa0o27j.apps.googleusercontent.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">562499227773</string>
+  <string name="google_storage_bucket" translatable="false">quiz-racing-mania.appspot.com</string>
+  <string name="project_id" translatable="false">quiz-racing-mania</string>
+  <string name="google_api_key" translatable="false">AIzaSyAqVIPU0XWjUR5kgRt7n_NyVJvXpv4Ojss</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAqVIPU0XWjUR5kgRt7n_NyVJvXpv4Ojss</string>
+  <string name="google_app_id" translatable="false">1:562499227773:android:8c7401ff06d5059d1da114</string>
+  <string name="default_web_client_id" translatable="false">562499227773-qu1kc39mn99s9ltjo8pmfkgq0cqeivsc.apps.googleusercontent.com</string>
 </resources>
