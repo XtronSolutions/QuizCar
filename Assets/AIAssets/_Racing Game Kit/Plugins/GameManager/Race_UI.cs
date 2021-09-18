@@ -103,6 +103,8 @@ namespace RacingGameKit
 
 		public Text countdownText;
         public GameObject powerups;
+
+
 		private void ShowCountDown()
 		{
 			String strCountdown = currentCount.ToString();
@@ -113,13 +115,13 @@ namespace RacingGameKit
                     strCountdown = "";
                 }
                 else
-                    strCountdown = "Ready!";
-			}
+                    strCountdown = GameData.GetLocalizaedText("Text_Ready"); //Ready!
+            }
 			else if (strCountdown == "0")
 			{
 				// _ShowCharacterCountdown = false;
-				strCountdown = "GO!";
-				StartCoroutine (DisableObject ());
+				strCountdown = GameData.GetLocalizaedText("Text_Go");//GO!
+                StartCoroutine (DisableObject ());
 				//isGoShowing = true;
 			}
 //			Debug.Log ("strCountdown"+strCountdown);
@@ -130,12 +132,12 @@ namespace RacingGameKit
 		}
 
 		public void SetMultiplayerReadyText(){
-			countdownText.text = "Ready!";
-		}
+			countdownText.text = GameData.GetLocalizaedText("Text_Ready"); //Ready!
+        }
 
 		public void SetMulitplayerCounterText(){
-			countdownText.text = "GO!!";
-			StartCoroutine (DisableObject ());
+			countdownText.text = GameData.GetLocalizaedText("Text_Go");//GO!
+            StartCoroutine (DisableObject ());
 		}
 
 		IEnumerator DisableObject(){

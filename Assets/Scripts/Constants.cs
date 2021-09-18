@@ -21,7 +21,7 @@ public class Constants
 	public static bool isBombEffectEnable = false;
 
 	public static bool inWater = false;
-	public static string AndroidPackageName = "";
+	public static string AndroidPackageName = "com.game.quizracingmania";
 	public static string ITunesAppID = "";
 
 	public static bool isMultiplayerSelected = false;

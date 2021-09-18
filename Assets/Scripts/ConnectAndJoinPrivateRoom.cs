@@ -154,8 +154,8 @@ namespace Photon.Pun.UtilityScripts
 
 		public override void OnJoinRoomFailed(short returnCode, string message)
 		{
-			Debug.Log("OnJoinRandomFailed() was called by PUN. No random room available, so we create one. Calling: PhotonNetwork.CreateRoom(null, new RoomOptions() {maxPlayers = 4}, null);");
-//			PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 7 }, null);
+			Debug.Log("OnJoinRandomFailed() was called by PUN. No random room available, so we create one. Calling: PhotonNetwork.CreateRoom(null, new RoomOptions() {maxPlayers = 6}, null);");
+//			PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 6 }, null);
 			if (isConnecting) {
 				var roomCode = Random.Range (100000, 999999);
                 var customProperties = new Hashtable();

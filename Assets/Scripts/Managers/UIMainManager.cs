@@ -182,7 +182,7 @@ public class UIMainManager : MonoBehaviour
     public void OnSignOutClicked()
     {
         GameData.signedIn = false;
-        PlayerPrefs.DeleteAll();
+        GameData.DeletePrefData();
         NextScreen(0);
         ToggleLoadingScreen(false);
         LoginResetVariables();
@@ -280,17 +280,17 @@ public class UIMainManager : MonoBehaviour
     {
         if(CheckStringInput(Email)==false)
         {
-            ShowToast("Please enter Email Address.", 2f);
+            LocalizedToast("Toast_EnterEmail", 2f);
             return;
         }
         else if(Regex.IsMatch(Email, MatchEmailPattern)==false)
         {
-            ShowToast("Please enter valid Email Address.", 2f);
+            LocalizedToast("Toast_ValidEmail", 2f);
             return;
         }
         else if(CheckStringInput(Password) == false)
         {
-            ShowToast("Please enter Password.", 2f);
+            LocalizedToast("Toast_EnterPass", 2f);
             return;
         }
 
@@ -313,11 +313,11 @@ public class UIMainManager : MonoBehaviour
         ToggleLoadingScreen(false);
 
         if (_code == 0)
-            ShowToast("Process cancelled by user.", 2f);
+            LocalizedToast("Toast_ProcessCancelled", 2f);
         else if (_code == 1)
-            ShowToast("Invalid email or password, please try again.", 2f);
+            LocalizedToast("Toast_ValidEmailPass", 2f);
         else if (_code == 2)
-            ShowToast("Google sign in was cancelled.", 2f);
+            LocalizedToast("Toast_GoogleCancelled", 2f);
     }
 
     public void OnSignUpClicked()
@@ -389,37 +389,37 @@ public class UIMainManager : MonoBehaviour
     {
         if (CheckStringInput(UserName) == false)
         {
-            ShowToast("Please enter Name.", 2f);
+            LocalizedToast("Toast_EnterName", 2f);
             return;
         }
         else if (CheckStringInput(Email) == false)
         {
-            ShowToast("Please enter Email Address.", 2f);
+            LocalizedToast("Toast_EnterEmail", 2f);
             return;
         }
         else if (Regex.IsMatch(Email, MatchEmailPattern) == false)
         {
-            ShowToast("Please enter valid Email Address.", 2f);
+            LocalizedToast("Toast_ValidEmail", 2f);
             return;
         }
         else if (CheckStringInput(Password) == false)
         {
-            ShowToast("Please enter Password.", 2f);
+            LocalizedToast("Toast_EnterPass", 2f);
             return;
         }
         else if (CheckStringInput(ConfirmPassword) == false)
         {
-            ShowToast("Please enter Pasword again to confirm.", 2f);
+            LocalizedToast("Toast_ConfirmPass", 2f);
             return;
         }
         else if (ConfirmPassword != Password)
         {
-            ShowToast("Passwords do not match, please try again.", 2f);
+            LocalizedToast("Toast_PassMismatch", 2f);
             return;
         }
         else if (CheckStringInput(Phone) == false)
         {
-            ShowToast("Please enter Phone Number.", 2f);
+            LocalizedToast("Toast_EnterNumber", 2f);
             return;
         }
 
@@ -442,11 +442,11 @@ public class UIMainManager : MonoBehaviour
         ToggleLoadingScreen(false);
 
         if (_code == 0)
-            ShowToast("Process cancelled by user.", 2f);
+            LocalizedToast("Toast_ProcessCancelled", 2f);
         else if (_code == 1)
-            ShowToast("Something went wrong, please try again.", 2f);
+            LocalizedToast("Toast_WentWrong", 2f);
         else if (_code==2)
-            ShowToast("Google sign in was cancelled.", 2f);
+            LocalizedToast("Toast_GoogleCancelled", 2f);
     }
 
     public void OnSignUpBackClicked_Register()
@@ -533,6 +533,18 @@ public class UIMainManager : MonoBehaviour
     public void ShowToast(string _msg,float _time)
     {
         ToggleMessageScreen(true);
+        messageScreen.WrittenText.text = _msg;
+        StartCoroutine(DisableToast(_time));
+    }
+
+    public void LocalizedToast(string _key, float _time)
+    {
+        ToggleMessageScreen(true);
+
+        int LangIndex = GameData.GetLanguageData();
+
+        string _msg= CVSParser.GetTextFromId(_key, LangIndex);
+
         messageScreen.WrittenText.text = _msg;
         StartCoroutine(DisableToast(_time));
     }

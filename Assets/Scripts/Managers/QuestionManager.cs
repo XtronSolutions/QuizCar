@@ -31,7 +31,15 @@ public class QuestionManager : MonoBehaviour
 
     private void OnEnable()
     {
+        iTween.ScaleTo(this.gameObject, iTween.Hash("scale", Vector3.one, "time", 0.7f, "easetype", iTween.EaseType.easeOutBounce, "oncompletetarget", this.gameObject,
+            "oncomplete", "OnScaleUp"));
+
         Source = this.gameObject.GetComponent<AudioSource>();
+    }
+
+    public void OnScaleUp()
+    {
+
     }
 
     public void ButtonEvents()
@@ -66,12 +74,19 @@ public class QuestionManager : MonoBehaviour
             PowerInstance.BoulderActive();
         }
 
+        iTween.ScaleTo(this.gameObject, iTween.Hash("scale", Vector3.zero, "time", 0.3f, "easetype", iTween.EaseType.easeInBounce, "oncompletetarget", this.gameObject,
+            "oncomplete", "OnScaleDown"));
+
+    }
+
+    public void OnScaleDown()
+    {
         Destroy(this.gameObject);
     }
 
     public void CorrectAnswer()
     {
-        TextFeedback.text = "CORRECT";
+        TextFeedback.text = GameData.GetLocalizaedText("Text_Correct"); //correct
         Color col = Color.green;
         TextFeedback.color = col;
         PlaySound(1);
@@ -79,7 +94,7 @@ public class QuestionManager : MonoBehaviour
 
     public void WrongAsnwer()
     {
-        TextFeedback.text = "WRONG";
+        TextFeedback.text = GameData.GetLocalizaedText("Text_Wrong"); //wrong
         Color col = Color.red;
         TextFeedback.color = col;
         PlaySound(0);
@@ -123,7 +138,7 @@ public class QuestionManager : MonoBehaviour
 
     public void ResetObjects()
     {
-        QuestionTitle.text = "QUESTION";
+        QuestionTitle.text = GameData.GetLocalizaedText("Text_Question"); //Question
         ToggleQuestionText(false);
         ToggleQuestionImage(false);
         ToggleQuestionAudio(false);

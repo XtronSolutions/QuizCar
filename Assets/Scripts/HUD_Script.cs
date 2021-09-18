@@ -213,11 +213,11 @@ public class HUD_Script : MonoBehaviour
         if ((racerDetail.RacerWrongWay || racerDetail.RacerOutOfBound) && !racerReg.IsRacerFinished)
 		{
 			if (racerDetail.RacerWrongWay) {
-				WrongWay_Text.text = "Wrong way";
-			}
+				WrongWay_Text.text = GameData.GetLocalizaedText("Text_WrongWay"); //wrong way
+            }
 			else if(racerDetail.RacerOutOfBound){
-				WrongWay_Text.text = "Out of bounds";
-			}
+				WrongWay_Text.text = GameData.GetLocalizaedText("Text_Bounds"); //Out of bounds
+            }
 			WrongWay_Text.gameObject.SetActive (true);
 		} 
 		else 

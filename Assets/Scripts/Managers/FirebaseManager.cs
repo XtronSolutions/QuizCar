@@ -139,7 +139,6 @@ public class FirebaseManager : MonoBehaviour
           return;
         }
 
-        Debug.Log("2");
         SignInAutomatically = false;
         SignInGoogleAutomatically = false;
         SignInFBAutomatically = false;
@@ -219,7 +218,7 @@ public class FirebaseManager : MonoBehaviour
     public void LogginFailed()
     {
         CheckRef();
-        PlayerPrefs.DeleteAll();
+        GameData.DeletePrefData();
         uIMainManager.ToggleLoadingScreen(false);
         uIMainManager.NextScreen(0);
     }
@@ -231,7 +230,7 @@ public class FirebaseManager : MonoBehaviour
         {
             FirebaseAuth = Firebase.Auth.FirebaseAuth.DefaultInstance;
             DatabaseInstance= FirebaseFirestore.DefaultInstance;
-            Debug.LogError("initialize done");
+            //Debug.LogError("initialize done");
             //uIMainManager.ToggleLoadingScreen(false);
             FirebaseAuth.StateChanged += AuthStateChanged;
 
@@ -493,9 +492,9 @@ public class FirebaseManager : MonoBehaviour
         SignInGoogleAutomatically = false;
         SignInAutomatically = false;
 
-        PlayerPrefs.DeleteAll();
+        GameData.DeletePrefData();
 
-        if(FirebaseAuth!=null)
+        if (FirebaseAuth!=null)
             FirebaseAuth.SignOut();
     }
 
@@ -657,7 +656,7 @@ public class FirebaseManager : MonoBehaviour
         uIMainManager.OnSignUpFailed(1);
         Debug.Log("failure");
         CheckRef();
-        PlayerPrefs.DeleteAll();
+        GameData.DeletePrefData();
         uIMainManager.ToggleLoadingScreen(false);
         uIMainManager.NextScreen(0);
         //}

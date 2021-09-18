@@ -4,6 +4,7 @@ using UnityEngine;
 using RacingGameKit;
 public class Track : MonoBehaviour {
 
+    public static Track Instance;
     public int Laps = 1;
 
     public GameObject wayPoints, spawnPoints, startPoint, finishPoint;
@@ -15,14 +16,8 @@ public class Track : MonoBehaviour {
     GameObject scene;
     Race_Manager race_Manager;
 	// Use this for initialization
-	void Start () {
-
-     
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	void OnEnable () {
+        Instance=this;
 	}
 
     public void InitPowerUpsAndCoins(GameObject scenePrefab, GameObject powerUps, GameObject coinPrefab)
@@ -41,7 +36,8 @@ public class Track : MonoBehaviour {
         Transform[] transforms = powerUpContainer.GetComponentsInChildren<Transform>();
         for (int i = 1; i < transforms.Length; i++)
         {
-            Instantiate(powerUps, transforms[i].position, transforms[i].rotation);
+            GameObject _powerUp= Instantiate(powerUps, transforms[i].position, transforms[i].rotation) as GameObject;
+            _powerUp.GetComponent<PowerUpID>().ID=i;
         }
 
 

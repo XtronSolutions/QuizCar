@@ -1,0 +1,67 @@
+ID,ENGLISH,GERMAN
+Title,QUIZ RACING MANIA,QUIZ RACING MANIA
+Button_Guest,PLAY AS GUEST,SPIELE ALS GAST 
+Button_SignIn,SIGN IN,LOGGEN SIE SICH EIN 
+Button_SignUp,SIGN UP,MELDEN SIE SICH AN
+Button_SignOut,SIGN OUT,LOGGEN SIE SICH AUS
+Button_LoginWith,LOGIN WITH,LOGGEN MIT 
+Placeholder_Email,EMAIL...,EMAIL...
+Placeholder_Password,PASSWORD...,PASSWORT...
+Button_Back,BACK,ZURÜCK
+Placeholder_Name,NAME...,VORNAME...
+Placeholder_ConfirmPassword,CONFIRM PASSWORD...,BESTÄTIGEN SIE BITTE IHR PASSWORT...
+Placeholder_Number,PHONE NUMBER...,TELEPHONE...
+Text_Welcome,Welcome,Willkommen
+Button_Singleplayer,SINGLEPLAYER,EINZELSPIELER
+Button_Multiplayer,MULTIPLAYER,MEHRSPIELER
+Button_QuickMatch,QUICK MATCH,SCHNELLES SPIEL
+Text_PlayFirends,PLAY WITH FRIENDS,SPIELE MIT FREUNDE
+Button_CreateMatch,CREATE MATCH,SPIEL ERSTELLEN
+Button_JoinMatch,JOIN MATCH,SPIEL BEITRETEN 
+Text_PlayerSearching,SEARCHING FOR PLAYERS...,SUCHE NACH SPIELER...
+Text_NoPlayerAvailable,LOOKS LIKE NO ONE JOINED THE GAME,"SIEHT AUS, ALS WIE NIEMAND DEM SPIEL BEITRETEN"
+Button_Home,HOME,HEIMAT
+Text_RaceStart,RACE WILL START IN :,DAS SPIEL BEGINNT IN :
+Text_Seconds,SECONDS,SEKUNDEN 
+Text_PlayerWaiting,WAITING FOR PLAYERS...,WARTE AUF ANDERE SPIELER...
+Text_PrivateCode,PRIVATE CODE :,PRIVATER CODE :
+Button_ShareCode,SHARE CODE,CODE TEILEN
+Button_StartGame,START GAME,SPIEL STARTEN
+Text_PlayersConnected,PLAYERS CONNECTED :,VERBUNDENE SPIELER :
+Placeholder_EnterCode,ENTER CODE...,TRAGEN SIE DEN CODE EIN...
+Button_Join,JOIN,BEITRETEN
+Text_Ready,READY!,BEREIT!
+Text_Go,GO!,LOS!
+Text_Place,PLACE,PLATZ
+Text_Lap,LAP,RUNDE
+Text_WrongWay,WRONG WAY,FALSCHE RICHTUNG
+Text_Pause,PAUSE,PAUSE
+Text_Question,QUESTION,FRAGE
+Text_True,TRUE,RICHTIG
+Text_False,FALSE,FALSCH
+Text_Correct,CORRECT,RICHTIG
+Text_Wrong,WRONG,FALSCH
+Text_RaceCompleted,RACE COMPLETED,DAS RENNEN IST ABGESCHLOSSEN 
+Text_1st,1st,1er
+Text_2nd,2nd,2er
+Text_3rd,3rd,3er
+Text_4th,4th,4er
+Text_5th,5th,5er
+Text_6th,6th,6er
+Toast_EnterEmail,Please enter Email Address.,Bitte geben Sie die E-Mail-Adresse ein.
+Toast_ValidEmail,Please enter valid Email Address.,Bitte geben Sie eine gültige Email Adresse an.
+Toast_EnterPass,Please enter Password.,Bitte Passwort eingeben.
+Toast_ProcessCancelled,Process cancelled by user.,Vorgang vom Benutzer abgebrochen.
+Toast_ValidEmailPass,"Invalid email or password, please try again.",Ungültige E-Mail-Adresse oder ungültiges Passwort. Bitte versuchen Sie es erneut.
+Toast_GoogleCancelled,Google sign in was cancelled.,Die Google-Anmeldung wurde abgebrochen.
+Toast_EnterName,Please enter Name.,Bitte Namen eingeben.
+Toast_ConfirmPass,Please enter Pasword again to confirm.,Bitte geben Sie das Passwort zur Bestätigung erneut ein.
+Toast_PassMismatch,"Passwords do not match, please try again.","Passwörter stimmen nicht überein, bitte versuchen Sie es erneut."
+Toast_EnterNumber,Please enter Phone Number.,Bitte Telefonnummer eingeben.
+Toast_WentWrong,"Something went wrong, please try again.",Etwas ist schief gelaufen. Bitte versuche es erneut.
+Toast_InvalidCode,INVALID CODE. PLEASE TRY AGAIN.,UNGÜLTIGER CODE. BITTE VERSUCHE ES ERNEUT.
+Toast_OK,OK,OK
+Toast_Oops,OOPS! SOMETHING WENT WRONG,HOPPLA! ETWAS IST SCHIEF GELAUFEN
+Text_SharePrivateLinkMessage,Join me in Race. Room#,Begleite mich im Rennen. Zimmer#
+Text_SharePrivateLinkMessage2,Download Game from:,Spiel herunterladen von:
+Text_PlayAudio,PLAY AUDIO,AUDIO ABSPIELEN

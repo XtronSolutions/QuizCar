@@ -245,7 +245,7 @@ void OnFacebookLogin()
         Debug.Log("PlayFab Login Successful!");
         if (PlayFabID != savedId && savedId != "newuser")
         {
-            PlayerPrefs.DeleteAll();
+            GameData.DeletePrefData();
         }
         SevePlayfabID();
         isLoggedIn = true;

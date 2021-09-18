@@ -92,7 +92,7 @@ public class GameFinishManualOnline : MonoBehaviour
 		{
 		case 1:
 			PlayerPosText.gameObject.SetActive (true);
-			PlayerPosText.text = "1st";
+			PlayerPosText.text = GameData.GetLocalizaedText("Text_1st"); //1st
 			reward = 10 + Constants.coinsCollected;
 			rewardText.text = string.Format ("10 + {0}", Constants.coinsCollected);
 			RewardProperties.Instance.Coin += reward;
@@ -102,7 +102,7 @@ public class GameFinishManualOnline : MonoBehaviour
 			break;
 		case 2:
 			PlayerPosText.gameObject.SetActive (true);
-			PlayerPosText.text = "2nd";
+			PlayerPosText.text = GameData.GetLocalizaedText("Text_2nd"); //2nd
 			reward = 6 + Constants.coinsCollected;
 			rewardText.text = string.Format ("6 + {0}", Constants.coinsCollected);
 			RewardProperties.Instance.Coin += reward;
@@ -112,7 +112,7 @@ public class GameFinishManualOnline : MonoBehaviour
 			break;
 		case 3:
 			PlayerPosText.gameObject.SetActive (true);
-			PlayerPosText.text = "3rd";
+			PlayerPosText.text = GameData.GetLocalizaedText("Text_3rd"); //3rd
 			reward = 2 + Constants.coinsCollected;
 			rewardText.text = string.Format ("2 + {0}", Constants.coinsCollected);
 			RewardProperties.Instance.Coin += reward;
@@ -120,21 +120,21 @@ public class GameFinishManualOnline : MonoBehaviour
 			break;
 		case 4:
 			PlayerPosText.gameObject.SetActive (true);
-			PlayerPosText.text = "4th";
+			PlayerPosText.text =GameData.GetLocalizaedText("Text_4th"); //4th
 			reward = Constants.coinsCollected;
 			rewardText.text = reward.ToString ();
 			RewardProperties.Instance.Coin += reward;
 			break;
 		case 5:
 			PlayerPosText.gameObject.SetActive (true);
-			PlayerPosText.text = "5th";
+			PlayerPosText.text = GameData.GetLocalizaedText("Text_5th"); //5th
 			reward = Constants.coinsCollected;
 			rewardText.text = reward.ToString ();
 			RewardProperties.Instance.Coin += reward;
 			break;
 		case 6:
 			PlayerPosText.gameObject.SetActive (true);
-			PlayerPosText.text = "6th";
+			PlayerPosText.text = GameData.GetLocalizaedText("Text_6th"); //6th
 			reward = Constants.coinsCollected;
 			rewardText.text = reward.ToString ();
 			RewardProperties.Instance.Coin += reward;

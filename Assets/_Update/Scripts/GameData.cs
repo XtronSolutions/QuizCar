@@ -38,16 +38,7 @@ public class PlayerDataSave
     public static string PlayerDataKey = "PlayerData";
     public static string PlayerGoogleDataKey = "GoogleData";
     public static string PlayerFBDataKey = "fBData";
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public static string LanguageSelection = "LanguageSelection";
 
     public static void SetSavePlayerData(string email, string pass)
     {
@@ -74,6 +65,16 @@ public class PlayerDataSave
         return PlayerPrefs.GetString(GameData.PlayerGoogleDataKey, "");
     }
 
+    public static void SetLanguageData(int _ind)
+    {
+        PlayerPrefs.SetInt(GameData.LanguageSelection, _ind);
+    }
+
+    public static int GetLanguageData()
+    {
+        return PlayerPrefs.GetInt(GameData.LanguageSelection);
+    }
+
     public static void SetFBData()
     {
         PlayerPrefs.SetString(GameData.PlayerFBDataKey, "stored");
@@ -82,6 +83,24 @@ public class PlayerDataSave
     public static string GetFBData()
     {
         return PlayerPrefs.GetString(GameData.PlayerFBDataKey, "");
+    }
+
+    public static string GetLocalizaedText(string _id)
+    {
+        int LangIndex = GameData.GetLanguageData();
+        string _msg = CVSParser.GetTextFromId(_id, LangIndex);
+        return _msg;
+    }
+
+    public static void DeletePrefData()
+    {
+        PlayerPrefs.DeleteKey(GameData.CONTROLSKEY);
+        PlayerPrefs.DeleteKey(GameData.SOUNDKEY);
+        PlayerPrefs.DeleteKey(GameData.MUSICKEY);
+        PlayerPrefs.DeleteKey(GameData.TUTORIALKEY);
+        PlayerPrefs.DeleteKey(GameData.PlayerDataKey);
+        PlayerPrefs.DeleteKey(GameData.PlayerGoogleDataKey);
+        PlayerPrefs.DeleteKey(GameData.PlayerFBDataKey);
     }
 
     public static void PushData()
@@ -173,7 +192,6 @@ public class PlayerDataSave
         }
         public void Load(string json)
         {
-            Debug.Log(json);
             string str = json;
             if (str.Length < 2)
                 return;

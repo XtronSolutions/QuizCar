@@ -181,6 +181,9 @@ namespace RacingGameKit
 		private float totalDistance;
         public Transform LastDP;
         public Transform body;
+
+		[HideInInspector]
+		public List<int> PowerUpList = new List<int>();
 		public float TotalDistance{
 			get { return totalDistance; }
 		}
@@ -347,7 +350,7 @@ namespace RacingGameKit
 					///Increase the lap
 					GamerCurrentLap++;
 					RacerDetail.RacerLap = GamerCurrentLap;
-
+					ClearPowerList();
 
 					float MyCurrentTime = RaceManager.TimeTotal; // capture the time while calculations made we dont want any delay.
 					MyCurrentTime -= MyTimeFix;
@@ -881,8 +884,27 @@ namespace RacingGameKit
 			RacingGameKit.AI.AI_Brain oProAI = transform.GetComponent(typeof(AI.AI_Brain)) as AI.AI_Brain;
 			if (oProAI != null) oProAI.enabled = false;
 		}
-		#endregion
+        #endregion
 
+        #region PowerUp
+		public bool CheckPowerUpList(int _val)
+        {
+			if (PowerUpList.Contains(_val))
+				return true;
+			else
+				return false;
+        }
+
+		public void PushPowerID(int _val)
+        {
+			PowerUpList.Add(_val);
+		}
+
+		public void ClearPowerList()
+		{
+			PowerUpList.Clear();
+		}
+		#endregion
 
 
 	}
