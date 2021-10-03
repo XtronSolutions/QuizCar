@@ -78,7 +78,7 @@ public class Controls : MonoBehaviour {
 
     void KeyboardInput()
     {
-        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor)
+        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor || Application.platform==RuntimePlatform.WindowsPlayer)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow)) OnLeftArrow(true);
             if (Input.GetKeyUp(KeyCode.LeftArrow)) OnLeftArrow(false);
