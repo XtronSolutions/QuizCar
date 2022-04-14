@@ -145,11 +145,6 @@ public class UIMainManager : MonoBehaviour
     }
     void Start()
     {
-
-#if UNITY_STANDALONE
-        MainScreenData.FacebookLoginButton.GetComponent<Button>().interactable = false;
-        MainScreenData.GoogleLoginButton.GetComponent<Button>().interactable = false;
-#endif
         //MainScreenListeners();
         //LoginResetVariables();
         //LoginListeners();
@@ -226,6 +221,7 @@ public class UIMainManager : MonoBehaviour
     public void OnFacebookSignInClicked_MainScreen()
     {
         LoginResetVariables();
+
         //GameData.SetSavePlayerData(Email, Password);
         ToggleLoadingScreen(true);
         CheckFirebaseRef();
@@ -250,9 +246,9 @@ public class UIMainManager : MonoBehaviour
         NextScreen(2);
     }
 
-#endregion
+    #endregion
 
-#region Login UI
+    #region Login UI
     public void LoginResetVariables()
     {
         Email = "";
@@ -335,9 +331,9 @@ public class UIMainManager : MonoBehaviour
         ToggleLoadingScreen(false);
         NextScreen(0);
     }
-#endregion
+    #endregion
 
-#region Register UI
+    #region Register UI
     public void RegisterResetVariables()
     {
         Email = "";
@@ -460,9 +456,9 @@ public class UIMainManager : MonoBehaviour
         NextScreen(0);
     }
 
-#endregion
+    #endregion
 
-#region Generic Screen
+    #region Generic Screen
 
     public bool CheckStringInput(string _data)
     {
@@ -526,9 +522,9 @@ public class UIMainManager : MonoBehaviour
         NextScreen(0);
     }
 
-#endregion
+    #endregion
 
-#region Message UI Setup
+    #region Message UI Setup
     public void ToggleMessageScreen(bool _state)
     {
         messageScreen.ScreenPanel.SetActive(_state);
@@ -559,9 +555,9 @@ public class UIMainManager : MonoBehaviour
         ToggleMessageScreen(false);
     }
 
-#endregion
+    #endregion
 
-#region LoadGameScene (single/multiplayer)
+    #region LoadGameScene (single/multiplayer)
     public void LoadEvironment()
     {
         CheckFirebaseRef();
@@ -588,9 +584,9 @@ public class UIMainManager : MonoBehaviour
     }
 
 
-#endregion
+    #endregion
 
-#region Multiplayer Selection Screen
+    #region Multiplayer Selection Screen
     public void SelectionScreenListeners()
     {
         SelectionScreen.BackButton.onClick.AddListener(OnBackClicked_SelectionScreen);
@@ -628,7 +624,7 @@ public class UIMainManager : MonoBehaviour
     }
 
 
-#endregion
+    #endregion
     
     private void OnDisable()
     {

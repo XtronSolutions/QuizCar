@@ -97,7 +97,7 @@ namespace RacingGameKit
 
         public GUISkin UISkin;
 
-
+        public static bool raceStarted = false;
 
 		#region UGUI
 
@@ -107,7 +107,8 @@ namespace RacingGameKit
 
 		private void ShowCountDown()
 		{
-			String strCountdown = currentCount.ToString();
+            Race_UI.raceStarted = false;
+            String strCountdown = currentCount.ToString();
 			if (currentCount >= _RaceManager.TimerCountdownFrom-1)
             {
                 if (PlayerPrefs.GetInt(GameData.TUTORIALKEY, 1) == 1)
@@ -132,7 +133,8 @@ namespace RacingGameKit
 		}
 
 		public void SetMultiplayerReadyText(){
-			countdownText.text = GameData.GetLocalizaedText("Text_Ready"); //Ready!
+            Race_UI.raceStarted = false;
+            countdownText.text = GameData.GetLocalizaedText("Text_Ready"); //Ready!
         }
 
 		public void SetMulitplayerCounterText(){
@@ -143,8 +145,9 @@ namespace RacingGameKit
 		IEnumerator DisableObject(){
 				yield return new WaitForSeconds(2f);
 				countdownText.enabled = false;
-            yield return new WaitForSeconds(1f);
-            powerups.SetActive(true);
+                Race_UI.raceStarted = true;
+                yield return new WaitForSeconds(1f);
+                powerups.SetActive(true);
 		}
 		#endregion
         private void Start()

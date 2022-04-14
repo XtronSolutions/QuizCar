@@ -42,7 +42,7 @@ namespace Photon.Pun.UtilityScripts
 		public UnityEngine.UI.Text timerText;
 		public GameObject[] searchingIcons;
 		public GameObject loadingScreen;
-		public UnityEngine.UI.Image[] dps;
+		//public UnityEngine.UI.Image[] dps;
 		public GameObject errorDailogue;
 		public AudioSource alertOnConnect;
 		public GameObject errorDailogue2;
@@ -50,7 +50,7 @@ namespace Photon.Pun.UtilityScripts
 		public Sprite defaultImage;
 
 		private bool startTimer = false;
-		private float timer = 30;
+		private float timer = 60;
 		private int connectedPlayers = 0;
 		private int width = 100;
 		private int height = 100;
@@ -169,14 +169,14 @@ namespace Photon.Pun.UtilityScripts
 
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
-            Debug.Log("OnJoinRandomFailed() was called by PUN. No random room available, so we create one. Calling: PhotonNetwork.CreateRoom(null, new RoomOptions() {maxPlayers = 6}, null);");
+            Debug.Log("OnJoinRandomFailed() was called by PUN. No random room available, so we create one. Calling: PhotonNetwork.CreateRoom(null, new RoomOptions() {maxPlayers = 8}, null);");
        		
 			var customProperties = new Hashtable ();
             customProperties.Add("m", GameData.selectedEnvironment);
             customProperties.Add("t", GameData.trackNo);
 
             var roomOptions = new RoomOptions ();
-			roomOptions.MaxPlayers = 6;
+			roomOptions.MaxPlayers = 8;
 			roomOptions.CustomRoomProperties = customProperties;
 			roomOptions.CustomRoomPropertiesForLobby = new string[]{ "m", "t" };
 
@@ -222,15 +222,15 @@ namespace Photon.Pun.UtilityScripts
 
 			var indexToFind = 0;
 
-			for (int i = 0; i < searchingIcons.Length; i++) {
-				if (dps [i].name.Equals (queryName)) {
-					indexToFind = i;
-					break;
-				}
-			}
-			dps [indexToFind].name = "image";
-			dps [indexToFind].sprite = defaultImage;
-			dps [indexToFind].transform.localScale = Vector3.one;
+			//for (int i = 0; i < searchingIcons.Length; i++) {
+			//	if (dps [i].name.Equals (queryName)) {
+			//		indexToFind = i;
+			//		break;
+			//	}
+			//}
+			//dps [indexToFind].name = "image";
+			//dps [indexToFind].sprite = defaultImage;
+			//dps [indexToFind].transform.localScale = Vector3.one;
 			searchingIcons [indexToFind].SetActive (true);
 			emptyIndex = indexToFind;
 
@@ -251,15 +251,15 @@ namespace Photon.Pun.UtilityScripts
 					indexToSet = emptyIndex;
 					emptyIndex = -1;
 				}
-				searchingIcons [indexToSet].SetActive (false);
+				//searchingIcons [indexToSet].SetActive (false);
 				if (newPlayer.NickName.Length > 0) {
-					dps [indexToSet].name = newPlayer.NickName;
+					//dps [indexToSet].name = newPlayer.NickName;
 					/*FBManager.Instance.GetFacebookUserPicture (newPlayer.NickName, width, height, res => {
 						dps [indexToSet].transform.localScale = new Vector3 (0.9f, 0.9f, 1);
 						dps [indexToSet].sprite = ImageUtils.CreateSprite (res.Texture, new Rect (0, 0, width, height), Vector2.zero);
 					});*/
 				} else {
-					dps [indexToSet].name = "-1";
+					//dps [indexToSet].name = "-1";
 				}
 				alertOnConnect.Play ();
 				//photonView.RPC ("OnJoin", RpcTarget.Others, PhotonNetwork.LocalPlayer.NickName, Race_Manager.playerSpawnPosition);
@@ -279,13 +279,13 @@ namespace Photon.Pun.UtilityScripts
 				}
 				searchingIcons [indexToSet].SetActive (false);
 				if (id.Length > 0) {
-					dps [indexToSet].name = id;
+					//dps [indexToSet].name = id;
 					/*FBManager.Instance.GetFacebookUserPicture (id, width, height, res => {
 						dps [indexToSet].transform.localScale = new Vector3 (0.9f, 0.9f, 1);
 						dps [indexToSet].sprite = ImageUtils.CreateSprite (res.Texture, new Rect (0, 0, width, height), Vector2.zero);
 					});*/
 				} else {
-					dps [indexToSet].name = "-1";
+					//dps [indexToSet].name = "-1";
 				}
 				alertOnConnect.Play ();
 			}

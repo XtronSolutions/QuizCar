@@ -188,10 +188,17 @@ public class HUD_Script : MonoBehaviour
 
 
 
-//		val = (racerDetail.RacerDistance - A)/((B - A) * (b - a) + a);
-//		val = Mathf.Abs( val - factor );
+        //		val = (racerDetail.RacerDistance - A)/((B - A) * (b - a) + a);
+        //		val = Mathf.Abs( val - factor );
 
-		val = 1 - (racerDetail.RacerDistance / (racerReg.TotalDistance * raceManager.RaceLaps));
+        try
+        {
+            val = 1 - (racerDetail.RacerDistance / (racerReg.TotalDistance * raceManager.RaceLaps));
+        }
+        catch (System.Exception)
+        {
+        }
+		
       //  Debug.Log(racerReg + " " + racerDetail + " " + val);
 		if (val > 0 && val < 1) 
 		{
@@ -245,7 +252,16 @@ public class HUD_Script : MonoBehaviour
           //  Debug.Log("update: " + p.racerDetail.RacerName + " ---- "+ p.slider.gameObject.name);
             //			p.avatar.sprite = racerLists [p.id].avatar;
         }
-        Total_Place.text = "/ " + Mathf.Clamp(t,1,raceManager.RacePlayers+1);
+
+        if (Constants.isMultiplayerSelected)
+        {
+            if (PhotonNetwork.IsConnected)
+                Total_Place.text = "/ " + PhotonNetwork.CurrentRoom.PlayerCount.ToString();
+            else
+                  Total_Place.text = "/ " + Mathf.Clamp(t, 1, raceManager.RacePlayers + 1);
+        }
+        else
+            Total_Place.text = "/ " + Mathf.Clamp(t, 1, raceManager.RacePlayers + 1);
 
     }
 

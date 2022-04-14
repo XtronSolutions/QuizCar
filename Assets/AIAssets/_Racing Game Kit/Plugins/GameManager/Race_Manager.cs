@@ -593,10 +593,10 @@ namespace RacingGameKit
                             if (name == null) name = "Player";
                             if (id == null) id = UnityEngine.Random.Range(100000, 99999).ToString();
 
-                            Debug.LogError("player instantiated: "+ IndexValue);
-
+                            // Debug.LogError("player instantiated: "+ IndexValue);
+                            Debug.LogError(IndexValue);
                             iRacer = PhotonNetwork.Instantiate (onlineBuggyToSpawn, SPItems [IndexValue].transform.position, SPItems [IndexValue].transform.rotation, 0, 
-								new object[] { RewardProperties.Instance.GetBuggyUpgrade (IndexValue),
+								new object[] { RewardProperties.Instance.GetBuggyUpgrade (0),
 
 									name.Length == 0 ? "Player" : name, id
 								}) as GameObject;

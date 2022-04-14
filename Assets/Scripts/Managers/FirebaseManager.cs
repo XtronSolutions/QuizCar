@@ -116,16 +116,6 @@ public class FirebaseManager : MonoBehaviour
         FBManager.Instance.OnFacebookLoginFail += OnFacebookLoginFail;
     }
 
-    void Update()
-    {
-#if UNITY_STANDALONE
-        if (Input.GetKey("escape"))
-        {
-            Application.Quit();
-        }
-#endif
-    }
-
     void OnEnable()
     {
         CheckRef();
