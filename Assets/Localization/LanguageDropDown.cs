@@ -18,7 +18,7 @@ public class LanguageDropDown : MonoBehaviour
         dropDown.captionText.text = CVSParser.GetAvailableLanguages()[dropDown.value];
 
         GameData.SetLanguageData(dropDown.value);
-        Debug.LogError("Setting lang: " + dropDown.value);
+        //Debug.LogError("Setting lang: " + dropDown.value);
         Label.text = dropDown.captionText.text;
     }
 
@@ -31,7 +31,7 @@ public class LanguageDropDown : MonoBehaviour
 
         dropDown.value = LangIndex;
  
-        Debug.LogError(LangIndex);
+       // Debug.LogError(LangIndex);
         LanguageChanged();
     }
 }

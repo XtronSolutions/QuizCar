@@ -169,6 +169,10 @@ public class vehicleHandling : MonoBehaviour {
     void Update()
     {
         //move physical wheels to match colliders positions
+
+        if (!Race_UI.raceStarted)
+            return;
+
         moveWheels();
         //			if (Mathf.Abs(vehicleSpeed) > 0)
         //			{

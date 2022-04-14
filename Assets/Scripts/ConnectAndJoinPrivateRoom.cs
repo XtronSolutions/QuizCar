@@ -129,9 +129,9 @@ namespace Photon.Pun.UtilityScripts
                 customProperties.Add("m", GameData.selectedEnvironment);
                 customProperties.Add("t", GameData.trackNo);
 
-                PhotonNetwork.CreateRoom (roomCode.ToString (), new RoomOptions () { MaxPlayers = 6, PublishUserId = true, CustomRoomProperties = customProperties }, null);
+                PhotonNetwork.CreateRoom (roomCode.ToString (), new RoomOptions () { MaxPlayers = 8, PublishUserId = true, CustomRoomProperties = customProperties }, null);
 				shareCodeText.text = roomCode.ToString ();
-				Debug.Log(roomCode.ToString ());
+				//Debug.Log(roomCode.ToString ());
 				isConnecting = true;
 			} else {
 				Debug.LogError("Join room with code: "+Constants.joinCode);
@@ -154,14 +154,14 @@ namespace Photon.Pun.UtilityScripts
 
 		public override void OnJoinRoomFailed(short returnCode, string message)
 		{
-			Debug.Log("OnJoinRandomFailed() was called by PUN. No random room available, so we create one. Calling: PhotonNetwork.CreateRoom(null, new RoomOptions() {maxPlayers = 6}, null);");
-//			PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 6 }, null);
+			Debug.Log("OnJoinRandomFailed() was called by PUN. No random room available, so we create one. Calling: PhotonNetwork.CreateRoom(null, new RoomOptions() {maxPlayers = 8}, null);");
+//			PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 8 }, null);
 			if (isConnecting) {
 				var roomCode = Random.Range (100000, 999999);
                 var customProperties = new Hashtable();
                 customProperties.Add("m", GameData.selectedEnvironment);
                 customProperties.Add("t", GameData.trackNo);
-                PhotonNetwork.CreateRoom (roomCode.ToString (), new RoomOptions () { MaxPlayers = 6, PublishUserId = true, CustomRoomProperties = customProperties }, null);
+                PhotonNetwork.CreateRoom (roomCode.ToString (), new RoomOptions () { MaxPlayers = 8, PublishUserId = true, CustomRoomProperties = customProperties }, null);
 				shareCodeText.text = roomCode.ToString ();
 			} else {
 				//connectingText.SetActive (false);
