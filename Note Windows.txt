@@ -1,0 +1,5 @@
+Could not upload one file which was larger than 100MB on git, so download file FirebaseCppApp-7_1_0.so from drive (below link) 
+https://drive.google.com/file/d/1uBcvQK9dh9nj6pQL4PG2xXvdY0IPIozZ/view?usp=sharing
+
+and place it into below directory:
+Root\Assets\Firebase\Plugins\x86_64
